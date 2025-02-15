@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Megan & Chaz Wedding</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">CHAZ & MEGAN</h1>
+        <p class="subtitle">AUGUST 2, 2025 · BANNISTER, MI, USA</p>
+        
+        <!-- Countdown Timer -->
+        <div id="countdown">
+            <div class="countdown-item">
+              <div id="days">00</div>
+              <span>Days</span>
+            </div>
+            <div class="separator">:</div>
+            <div class="countdown-item">
+              <div id="hours">00</div>
+              <span>Hours</span>
+            </div>
+            <div class="separator">:</div>
+            <div class="countdown-item">
+              <div id="minutes">00</div>
+              <span>Minutes</span>
+            </div>
+            <div class="separator">:</div>
+            <div class="countdown-item">
+              <div id="seconds">00</div>
+              <span>Seconds</span>
+            </div>
+        </div>
+
+        <!-- Navbar -->
+        <nav class="navbar">
+            <a href="#home" class="tab active" data-target="home">Home</a>
+            <a href="#photos" class="tab" data-target="photos">Photos</a>
+            <a href="#wedding-party" class="tab" data-target="wedding-party">Wedding Party</a>
+            <a href="#qa" class="tab" data-target="qa">Q + A</a>
+            <a href="#registry" class="tab" data-target="registry">Registry</a>
+        </nav>
+
+        <!-- Sections for different tabs -->
+        <div id="home" class="content" data-aos="fade-up">
+            <p>We're so excited to celebrate with you.</p>
+
+            <!-- RSVP Button (Only visible on the Home Page) -->
+            <div id="rsvp-container">
+                <button id="rsvp-button" class="rsvp-button">RSVP</button> 
+            
+                <form id="rsvp-form" style="display: none;">
+                    <label for="guest-name">Name:</label>
+                    <input type="text" id="guest-name" name="guest-name" required>
+            
+                    <label for="guest-count">Number of Guests:</label>
+                    <input type="number" id="guest-count" name="guest-count" required>
+            
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+            
+        </div>
+
+        <!-- Home Details (Only for Home Page) -->
+        <div id="home-details" class="home-details content" data-aos="fade-up">
+            <p>Click here for directions to <strong>The Milestone Barn:</strong></p>
+            <a href="https://www.google.com/maps/place/The+Milestone+Barn/@43.1818886,-84.3482856,17z/data=!3m1!4b1!4m6!3m5!1s0x882252050cd50d49:0xe182b66b80a1db84!8m2!3d43.1818847!4d-84.3457107!16s%2Fg%2F1q2_dclhv?entry=ttu&g_ep=EgoyMDI1MDIxMC4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+                Get Directions
+            </a>                 
+        </div>
+        
+        
+        <div id="photos" class="content" style="display: none;">
+            <p>Add photos of megan and chaz?</p>
+            <p>engagement photos?</p>
+            <p>or photos taken from wedding and add afterwards?</p>
+            <p>should we allow people to upload?</p>
+        </div>
+
+        <div id="wedding-party" class="content" style="display: none;">
+            <h2>Wedding Party</h2>
+        
+            <div class="party-section">
+                <h3>The Bride & Bridesmaids</h3>
+                <div class="party-member">
+                    <img src="images/bride_with_bridesmaid1.jpg" alt="Bride with Ashley">
+                    <p>Ashley Jain Bengani - Matron of Honor</p>
+                </div>
+                <div class="party-member">
+                    <img src="images/bride_with_bridesmaid2.jpg" alt="Bride with Emily">
+                    <p>Emily Hendley - Maid of Honor</p>
+                </div>
+                <div class="party-member">
+                    <img src="images/bride_with_bridesmaid3.jpg" alt="Bride with Georgia">
+                    <p>Georgia Hill - Bridesmaid</p>
+                </div>
+                <div class="party-member">
+                    <img src="images/bride_with_bridesmaid4.jpg" alt="Bride with Vaughn">
+                    <p>Vaughn Smith- Bridesmaid</p>
+                </div>
+                <div class="party-member">
+                    <img src="images/bride_with_bridesmaid4.jpg" alt="Bride with Samantha">
+                    <p>Samantha Morrill- Bridesmaid</p>
+                </div>
+                <div class="party-member">
+                    <img src="images/bride_with_bridesmaid4.jpg" alt="Bride with Sarah">
+                    <p>Sarah Morrill- Bridesmaid</p>
+                </div>
+            </div>
+        
+            <div class="party-section">
+                <h3>The Groom & Groomsmen</h3>
+                <div class="party-member">
+                    <img src="images/groom_with_groomsman1.jpg" alt="Groom with Joe">
+                    <p>Joe Albarran - Best Man</p>
+                </div>
+                <div class="party-member">
+                    <img src="images/groom_with_groomsman2.jpg" alt="Groom with Matt">
+                    <p>Matt English - Groomsman</p>
+                </div>
+                <div class="party-member">
+                    <img src="images/groom_with_groomsman3.jpg" alt="Groom with Eric">
+                    <p>Eric Schaffer - Groomsman</p>
+                </div>
+                <div class="party-member">
+                    <img src="images/groom_with_groomsman4.jpg" alt="Groom with Kyle M.">
+                    <p>Kyle Maka - Groomsman</p>
+                </div>
+                <div class="party-member">
+                    <img src="images/groom_with_groomsman4.jpg" alt="Groom with Kyle Y.">
+                    <p>Kyle Younker - Groomsman</p>
+                </div>
+                <div class="party-member">
+                    <img src="images/groom_with_groomsman4.jpg" alt="Groom with Bill">
+                    <p>Bill Chilman - Groomsman</p>
+                </div>
+            </div>
+        </div>
+        
+
+        <div id="qa" class="content" style="display: none;">
+            <p>Add Q&A.... maybe add a way people can post their questions?</p>
+        </div>
+
+        <div id="registry" class="content" style="display: none;">
+            <p>Not registry though? dunno what to put here yet</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
