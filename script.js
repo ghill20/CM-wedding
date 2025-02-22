@@ -4,139 +4,133 @@ document.addEventListener('DOMContentLoaded', function() {
     const homeDetails = document.getElementById('home-details');
     const rsvpButton = document.getElementById('rsvp-button');
     const rsvpForm = document.getElementById('rsvp-form');
-    const homeSection = document.getElementById('home'); // Home section
+    const homeSection = document.getElementById('home');
+    const guestNameInput = document.getElementById('guest-name');
+    const guestCountDropdown = document.getElementById('guest-count');
+    const suggestionsList = document.getElementById('suggestions');
+    const scriptUrl = "https://script.google.com/macros/s/AKfycbxfCxvsuRFThv7PDvT1Q3hnHCOnzpy3koK0WskXexs/dev";
+    let guestData = [];
 
-    // Initialize AOS (Animate on Scroll) if available
     if (typeof AOS !== "undefined") {
-        AOS.init({
-            duration: 1000,
-            once: true,
-        });
+        AOS.init({ duration: 1000, once: true });
     } else {
         console.error("AOS library failed to load.");
     }
 
-    // Tab Switching Logic
     tabs.forEach(tab => {
         tab.addEventListener('click', function(event) {
             event.preventDefault();
-
-            // Hide all content sections and home details
             contentSections.forEach(section => section.style.display = 'none');
-            if (homeDetails) {
-                homeDetails.style.display = 'none';
-            }
-
-            // Get target content and show it if it exists
+            if (homeDetails) homeDetails.style.display = 'none';
+            
             const targetId = tab.getAttribute('data-target');
             const targetElement = document.getElementById(targetId);
-            if (targetElement) {
-                targetElement.style.display = 'block';
-            } else {
-                console.error("No element found with id:", targetId);
-            }
+            if (targetElement) targetElement.style.display = 'block';
 
-            // Show RSVP button only on the Home page
             if (targetId === 'home') {
-                if (homeDetails) {
-                    homeDetails.style.display = 'block';
-                }
-                if (rsvpButton) {
-                    rsvpButton.style.display = 'inline-block';
-                }
+                if (homeDetails) homeDetails.style.display = 'block';
+                if (rsvpButton) rsvpButton.style.display = 'inline-block';
             } else {
-                if (rsvpButton) {
-                    rsvpButton.style.display = 'none';
-                }
+                if (rsvpButton) rsvpButton.style.display = 'none';
             }
 
-            // Highlight the active tab
             tabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
         });
     });
 
-    // Live Countdown Timer
-    function updateCountdown() {
-        const weddingDate = new Date("August 2, 2025 16:00:00").getTime();
-        const now = new Date().getTime();
-        const timeLeft = weddingDate - now;
-
-        if (timeLeft > 0) {
-            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-            document.getElementById("days").textContent = days.toString().padStart(2, '0');
-            document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
-            document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
-            document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
-        } else {
-            document.getElementById("countdown").innerHTML = "🎉 It's Wedding Day! 🎉";
+    // Fetch guest list from guests.json
+    async function fetchGuestList() {
+        try {
+            const response = await fetch('guests.json');  // Ensure guests.json is in the same directory
+            const data = await response.json();
+            guestData = data;  // Store the data in guestData
+        } catch (error) {
+            console.error("Error fetching guest list:", error);
         }
     }
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
 
-    // RSVP Button Click Logic: Hide button and show the form
+    // Filter names based on input
+    function filterNames() {
+        const input = guestNameInput.value.trim().toLowerCase();
+        suggestionsList.innerHTML = '';
+        if (input.length === 0) return;
+
+        guestData.forEach(guest => {
+            if (guest.name.toLowerCase().includes(input)) {
+                const li = document.createElement("li");
+                li.textContent = guest.name;
+                li.onclick = () => selectGuest(guest);  // Use the guest object
+                suggestionsList.appendChild(li);
+            }
+        });
+    }
+    
+    // When a guest is selected, show the dropdown for guest count
+    function selectGuest(guest) {
+        guestNameInput.value = guest.name;
+        suggestionsList.innerHTML = ''; // Clear suggestions
+        guestCountDropdown.innerHTML = ''; // Clear guest count dropdown
+        guestCountDropdown.style.display = 'block';
+
+        // Populate dropdown with the number of guests they can bring
+        for (let i = 1; i <= guest.maxGuests; i++) {
+            const option = document.createElement("option");
+            option.value = i;
+            option.textContent = i;
+            guestCountDropdown.appendChild(option);
+        }
+    }    
+
+    guestNameInput.addEventListener('input', filterNames);  // Filter names when typing
+
     if (rsvpButton && rsvpForm) {
         rsvpButton.addEventListener('click', function() {
-            rsvpButton.style.display = 'none'; // Hide the RSVP button
-            rsvpForm.style.display = 'block';   // Show the RSVP form
+            rsvpButton.style.display = 'none';
+            rsvpForm.style.display = 'block';
         });
     }
 
-    // RSVP Form Submission
     if (rsvpForm) {
         rsvpForm.addEventListener('submit', function(event) {
             event.preventDefault();
-
-            const guestName = document.getElementById('guest-name').value.trim();
-            const guestCount = document.getElementById('guest-count').value.trim();
-            const submitButton = rsvpForm.querySelector('button[type="submit"]');
-
-            // Check for empty fields
+            const guestName = guestNameInput.value.trim();
+            const guestCount = guestCountDropdown.value.trim();
+    
             if (!guestName || !guestCount) {
                 alert("Error: Please fill out both fields.");
                 return;
             }
-
-            // Disable the submit button and show loading text
+    
             submitButton.textContent = "Submitting...";
             submitButton.disabled = true;
-
-            // Send RSVP data to Google Sheets
-            fetch("GOOGLE_SCRIPT_DEPLOYMENT_URL_HERE", {
+    
+            fetch(scriptUrl, {
                 method: "POST",
                 body: JSON.stringify({ name: guestName, attendees: guestCount }),
-                headers: {
-                    "Content-Type": "application/json"
-                }
+                headers: { "Content-Type": "application/json" }
             })
             .then(response => response.text())
             .then(data => {
                 console.log("Response from Google Sheets:", data);
-                // Hide the form and display a "Submitted" message
                 rsvpForm.style.display = 'none';
                 const submittedMessage = document.createElement('p');
                 submittedMessage.textContent = "Submitted!";
                 submittedMessage.style.fontSize = "1.2rem";
                 submittedMessage.style.fontWeight = "bold";
                 submittedMessage.style.textAlign = "center";
-                // Append the message to the RSVP container
-                const rsvpContainer = document.getElementById('rsvp-container');
-                rsvpContainer.appendChild(submittedMessage);
+                document.getElementById('rsvp-container').appendChild(submittedMessage);
             })
             .catch(error => {
                 console.error("Error:", error);
                 alert("Something went wrong. Please try again.");
             })
             .finally(() => {
-                // Reset the submit button regardless of the outcome
                 submitButton.textContent = "Submit RSVP";
                 submitButton.disabled = false;
             });
         });
-    }
+    }    
+
+    fetchGuestList();  // Call fetch to load the guest data
 });
