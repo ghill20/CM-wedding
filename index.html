@@ -55,15 +55,26 @@
             
                 <form id="rsvp-form" style="display: none;">
                     <label for="guest-name">Name:</label>
-                    <input type="text" id="guest-name" name="guest-name" required>
-            
+                    <input type="text" id="guest-name" list="guest-name-list" placeholder="Search guest name">
+                    <datalist id="guest-name-list">
+                        <!-- Guest names will be populated dynamically -->
+                    </datalist>
+                
                     <label for="guest-count">Number of Guests:</label>
-                    <input type="number" id="guest-count" name="guest-count" required>
+                    <select id="guest-count" name="guest-count" required>
+                        <option value="">Select guests</option>
+                    </select>
+                
+                    <label for="guest-rsvp">RSVP Response:</label>
+                    <select id="guest-rsvp" name="guest-rsvp" required>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                
+                    <button type="submit" id="submit-rsvp">Submit RSVP</button>
 
-                    <ul id="suggestions"></ul>
-            
-                    <button type="submit">Submit</button>
                 </form>
+                
             </div>
             
         </div>

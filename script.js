@@ -4,25 +4,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const homeDetails = document.getElementById('home-details');
     const rsvpButton = document.getElementById('rsvp-button');
     const rsvpForm = document.getElementById('rsvp-form');
-    const homeSection = document.getElementById('home');
     const guestNameInput = document.getElementById('guest-name');
+    const guestNameList = document.getElementById('guest-name-list');
     const guestCountDropdown = document.getElementById('guest-count');
-    const suggestionsList = document.getElementById('suggestions');
-    const scriptUrl = "https://script.google.com/macros/s/AKfycbxfCxvsuRFThv7PDvT1Q3hnHCOnzpy3koK0WskXexs/dev";
+    const guestRSVPSelect = document.getElementById('guest-rsvp');
+    const numRespInput = document.getElementById('num-resp');
+    const submitButton = document.getElementById('submit-rsvp');
+    const scriptUrl = "https://script.google.com/macros/s/AKfycbwK2qeUY9tWXj_-4QN-OrDTHsbLHzV7zgGP_pcO5fE7AKBCCkB-WpRoVDfhH8WB5HwP/exec";
     let guestData = [];
 
+    // ✅ Initialize AOS Animations if Available
     if (typeof AOS !== "undefined") {
         AOS.init({ duration: 1000, once: true });
     } else {
         console.error("AOS library failed to load.");
     }
 
+    // ✅ Tab Navigation Logic
     tabs.forEach(tab => {
         tab.addEventListener('click', function(event) {
             event.preventDefault();
             contentSections.forEach(section => section.style.display = 'none');
             if (homeDetails) homeDetails.style.display = 'none';
-            
+
             const targetId = tab.getAttribute('data-target');
             const targetElement = document.getElementById(targetId);
             if (targetElement) targetElement.style.display = 'block';
@@ -39,51 +43,50 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Fetch guest list from guests.json
+    // ✅ Fetch guest list from JSON file
     async function fetchGuestList() {
         try {
-            const response = await fetch('guests.json');  // Ensure guests.json is in the same directory
-            const data = await response.json();
-            guestData = data;  // Store the data in guestData
+            const response = await fetch('guests.json'); // Ensure guests.json is in the same directory
+            guestData = await response.json();
+            populateDatalist(guestData);
         } catch (error) {
             console.error("Error fetching guest list:", error);
         }
     }
 
-    // Filter names based on input
-    function filterNames() {
-        const input = guestNameInput.value.trim().toLowerCase();
-        suggestionsList.innerHTML = '';
-        if (input.length === 0) return;
-
+    // ✅ Populate datalist for name search
+    function populateDatalist(guestData) {
+        guestNameList.innerHTML = ''; // Clear previous entries
         guestData.forEach(guest => {
-            if (guest.name.toLowerCase().includes(input)) {
-                const li = document.createElement("li");
-                li.textContent = guest.name;
-                li.onclick = () => selectGuest(guest);  // Use the guest object
-                suggestionsList.appendChild(li);
-            }
+            let option = document.createElement("option");
+            option.value = guest.name;
+            guestNameList.appendChild(option);
         });
     }
-    
-    // When a guest is selected, show the dropdown for guest count
-    function selectGuest(guest) {
-        guestNameInput.value = guest.name;
-        suggestionsList.innerHTML = ''; // Clear suggestions
-        guestCountDropdown.innerHTML = ''; // Clear guest count dropdown
-        guestCountDropdown.style.display = 'block';
 
-        // Populate dropdown with the number of guests they can bring
-        for (let i = 1; i <= guest.maxGuests; i++) {
-            const option = document.createElement("option");
+    // ✅ Detect when a valid guest is selected & auto-fill fields
+    guestNameInput.addEventListener('input', function() {
+        const selectedGuest = guestData.find(g => g.name.toLowerCase() === guestNameInput.value.toLowerCase());
+        if (selectedGuest) {
+            populateGuestCountDropdown(selectedGuest.maxGuests);
+            numRespInput.value = selectedGuest.numResp || 1; // Default 1 if not set
+            guestRSVPSelect.value = selectedGuest.guestRSVP || "Yes"; // Default to "Yes"
+        }
+    });
+
+    // ✅ Populate guest count dropdown dynamically
+    function populateGuestCountDropdown(maxGuests) {
+        guestCountDropdown.innerHTML = ''; // Clear previous options
+        for (let i = 1; i <= maxGuests; i++) {
+            let option = document.createElement("option");
             option.value = i;
             option.textContent = i;
             guestCountDropdown.appendChild(option);
         }
-    }    
+        guestCountDropdown.style.display = 'block';
+    }
 
-    guestNameInput.addEventListener('input', filterNames);  // Filter names when typing
-
+    // ✅ Show RSVP form when clicking RSVP button
     if (rsvpButton && rsvpForm) {
         rsvpButton.addEventListener('click', function() {
             rsvpButton.style.display = 'none';
@@ -91,31 +94,52 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // ✅ Form Submission Logic
     if (rsvpForm) {
         rsvpForm.addEventListener('submit', function(event) {
             event.preventDefault();
+            console.log("Form Submitted!");
             const guestName = guestNameInput.value.trim();
             const guestCount = guestCountDropdown.value.trim();
-    
-            if (!guestName || !guestCount) {
-                alert("Error: Please fill out both fields.");
+            const guestRSVP = guestRSVPSelect.value;
+            const numResp = numRespInput.value;
+
+            const selectedGuest = guestData.find(g => g.name.toLowerCase() === guestName.toLowerCase());
+            if (!selectedGuest) {
+                alert("Error: Please select a valid guest name from the list.");
                 return;
             }
-    
+
+            if (!guestCount) {
+                alert("Error: Please select the number of guests.");
+                return;
+            }
+
+            // Disable button while submitting
             submitButton.textContent = "Submitting...";
             submitButton.disabled = true;
-    
+
+            // ✅ Prepare RSVP Data to Send
+            const rsvpData = {
+                name: guestName,
+                guestRSVP: guestRSVP,
+                guestCount: guestCount,  // This is the number of people attending
+            };
+
+            console.log("Submitting RSVP Data:", rsvpData); // Debugging
+
+            // ✅ Send data to Google Sheets (using URLSearchParams for form-encoded data)
             fetch(scriptUrl, {
                 method: "POST",
-                body: JSON.stringify({ name: guestName, attendees: guestCount }),
-                headers: { "Content-Type": "application/json" }
+                body: new URLSearchParams(rsvpData),  // Send as URL-encoded parameters
+                headers: { "Content-Type": "application/x-www-form-urlencoded" }
             })
             .then(response => response.text())
             .then(data => {
                 console.log("Response from Google Sheets:", data);
                 rsvpForm.style.display = 'none';
                 const submittedMessage = document.createElement('p');
-                submittedMessage.textContent = "Submitted!";
+                submittedMessage.textContent = "RSVP Submitted! Thank you.";
                 submittedMessage.style.fontSize = "1.2rem";
                 submittedMessage.style.fontWeight = "bold";
                 submittedMessage.style.textAlign = "center";
@@ -130,7 +154,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 submitButton.disabled = false;
             });
         });
-    }    
+    }
 
-    fetchGuestList();  // Call fetch to load the guest data
+    // ✅ Load guest names on page load
+    fetchGuestList();
 });
