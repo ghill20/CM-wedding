@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const guestRSVPSelect = document.getElementById('guest-rsvp');
     const numRespInput = document.getElementById('num-resp');
     const submitButton = document.getElementById('submit-rsvp');
-    const scriptUrl = "https://script.google.com/macros/s/AKfycbwK2qeUY9tWXj_-4QN-OrDTHsbLHzV7zgGP_pcO5fE7AKBCCkB-WpRoVDfhH8WB5HwP/exec";
+    const scriptUrl = "https://script.google.com/macros/s/AKfycbyNgkF6lvcJ2A6tJOh-8e2zT8vsyEWiaAqLVybKFvaW6bDvFSdLLUdXOBF7ICtT7ZaB/exec";
     let guestData = [];
 
     // ✅ Initialize AOS Animations if Available
