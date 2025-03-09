@@ -64,14 +64,15 @@
                     <select id="guest-count" name="guest-count" required>
                         <option value="">Select guests</option>
                     </select>
-
-                    <input type="number" id="num-resp" />
                 
                     <label for="guest-rsvp">RSVP Response:</label>
                     <select id="guest-rsvp" name="guest-rsvp" required>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                     </select>
+
+                    <input type="number" id="num-resp" min="1" value="1">
+
                 
                     <button type="submit" id="submit-rsvp">Submit RSVP</button>
 
@@ -167,6 +168,6 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script defer src="script.js"></script>
 </body>
 </html>

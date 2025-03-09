@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const guestRSVPSelect = document.getElementById('guest-rsvp');
     const numRespInput = document.getElementById('num-resp');
     const submitButton = document.getElementById('submit-rsvp');
-    const scriptUrl = "https://script.google.com/macros/s/AKfycbyNgkF6lvcJ2A6tJOh-8e2zT8vsyEWiaAqLVybKFvaW6bDvFSdLLUdXOBF7ICtT7ZaB/exec";
+    const scriptUrl = "https://script.google.com/macros/s/AKfycbw-v-g1o3FLAsSRO1M077OpYLyl7mqKlO5KO7hDnL9HMNHmUAAIOhryaXFqtizKUGTD/exec";
     let guestData = [];
 
     // ✅ Initialize AOS Animations if Available
@@ -96,13 +96,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ✅ Form Submission Logic
     if (rsvpForm) {
-        rsvpForm.addEventListener('submit', function(event) {
+        rsvpForm.addEventListener('submit', async function(event) {
             event.preventDefault();
             console.log("Form Submitted!");
+
             const guestName = guestNameInput.value.trim();
             const guestCount = guestCountDropdown.value.trim();
             const guestRSVP = guestRSVPSelect.value;
-            const numResp = numRespInput.value;
 
             const selectedGuest = guestData.find(g => g.name.toLowerCase() === guestName.toLowerCase());
             if (!selectedGuest) {
@@ -119,24 +119,27 @@ document.addEventListener('DOMContentLoaded', function() {
             submitButton.textContent = "Submitting...";
             submitButton.disabled = true;
 
-            // ✅ Prepare RSVP Data to Send
-            const rsvpData = {
+            // ✅ Prepare RSVP Data in URL-encoded format
+            const rsvpData = new URLSearchParams({
                 name: guestName,
                 guestRSVP: guestRSVP,
-                guestCount: guestCount,  // This is the number of people attending
-            };
+                guestCount: guestCount
+            });
 
-            console.log("Submitting RSVP Data:", rsvpData); // Debugging
+            console.log("Submitting RSVP Data:", Object.fromEntries(rsvpData)); // Debugging
 
-            // ✅ Send data to Google Sheets (using URLSearchParams for form-encoded data)
-            fetch(scriptUrl, {
-                method: "POST",
-                body: new URLSearchParams(rsvpData),  // Send as URL-encoded parameters
-                headers: { "Content-Type": "application/x-www-form-urlencoded" }
-            })
-            .then(response => response.text())
-            .then(data => {
-                console.log("Response from Google Sheets:", data);
+            try {
+                // ✅ Send data to Google Sheets using URL-encoded format
+                const response = await fetch(scriptUrl, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: rsvpData
+                });
+
+                const responseText = await response.text();
+                console.log("Response from Google Sheets:", responseText); // Debugging
+
+                // ✅ Display a success message
                 rsvpForm.style.display = 'none';
                 const submittedMessage = document.createElement('p');
                 submittedMessage.textContent = "RSVP Submitted! Thank you.";
@@ -144,15 +147,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 submittedMessage.style.fontWeight = "bold";
                 submittedMessage.style.textAlign = "center";
                 document.getElementById('rsvp-container').appendChild(submittedMessage);
-            })
-            .catch(error => {
+
+            } catch (error) {
                 console.error("Error:", error);
                 alert("Something went wrong. Please try again.");
-            })
-            .finally(() => {
+            } finally {
+                // Re-enable submit button
                 submitButton.textContent = "Submit RSVP";
                 submitButton.disabled = false;
-            });
+            }
         });
     }
 
