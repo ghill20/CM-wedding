@@ -45,129 +45,59 @@
             <a href="#registry" class="tab" data-target="registry">Registry</a>
         </nav>
 
-        <!-- Sections for different tabs -->
+        <!-- Home Section -->
         <div id="home" class="content" data-aos="fade-up">
             <p>We're so excited to celebrate with you.</p>
 
-            <!-- RSVP Button (Only visible on the Home Page) -->
+            <!-- RSVP Button and Form -->
             <div id="rsvp-container">
-                <button id="rsvp-button" class="rsvp-button">RSVP</button> 
-            
-                <form id="rsvp-form" style="display: none;">
-                    <label for="guest-name">Name:</label>
-                    <input type="text" id="guest-name" list="guest-name-list" placeholder="Search guest name">
-                    <datalist id="guest-name-list">
-                        <!-- Guest names will be populated dynamically -->
-                    </datalist>
-                
+                <button id="rsvp-button" class="rsvp-button">RSVP</button>
+
+                <!-- RSVP Form (Initially Hidden) -->
+                <form id="rsvp-form" action="https://script.google.com/macros/s/AKfycbxywJltUVjJvY0TTRiMzndWql1DNaUdBTM-5DUvrdwGnk8H0swzx8NJJ2ao1t4e0SP5/exec" method="POST" style="display: none;">
+                    <input type="text" name="guest-name" placeholder="Name" required>
                     <label for="guest-count">Number of Guests:</label>
-                    <select id="guest-count" name="guest-count" required>
+                    <select id="guest-count" name="num-resp" required>
                         <option value="">Select guests</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
                     </select>
-                
-                    <label for="guest-rsvp">RSVP Response:</label>
                     <select id="guest-rsvp" name="guest-rsvp" required>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                     </select>
-
-                    <input type="number" id="num-resp" min="1" value="1">
-
-                
-                    <button type="submit" id="submit-rsvp">Submit RSVP</button>
-
-                </form>
-                
-            </div>
-            
+                    <button type="submit">Submit RSVP</button>
+                </form>                
+            </div>            
         </div>
 
-        <!-- Home Details (Only for Home Page) -->
         <div id="home-details" class="home-details content" data-aos="fade-up">
             <p>Click here for directions to <strong>The Milestone Barn:</strong></p>
-            <a href="https://www.google.com/maps/place/The+Milestone+Barn/@43.1818886,-84.3482856,17z/data=!3m1!4b1!4m6!3m5!1s0x882252050cd50d49:0xe182b66b80a1db84!8m2!3d43.1818847!4d-84.3457107!16s%2Fg%2F1q2_dclhv?entry=ttu&g_ep=EgoyMDI1MDIxMC4wIKXMDSoASAFQAw%3D%3D" target="_blank">
-                Get Directions
-            </a>                 
+            <a href="https://www.google.com/maps/place/The+Milestone+Barn/" target="_blank">Get Directions</a>                 
         </div>
-        
-        
+
+        <!-- Other Sections -->
         <div id="photos" class="content" style="display: none;">
-            <p>Add photos of megan and chaz?</p>
-            <p>engagement photos?</p>
-            <p>or photos taken from wedding and add afterwards?</p>
-            <p>should we allow people to upload?</p>
+            <p>Wedding and engagement photos can be added here.</p>
         </div>
 
         <div id="wedding-party" class="content" style="display: none;">
             <h2>Wedding Party</h2>
-        
-            <div class="party-section">
-                <h3>The Bride & Bridesmaids</h3>
-                <div class="party-member">
-                    <img src="images/bride_with_bridesmaid1.jpg" alt="Bride with Ashley">
-                    <p>Ashley Jain Bengani - Matron of Honor</p>
-                </div>
-                <div class="party-member">
-                    <img src="images/bride_with_bridesmaid2.jpg" alt="Bride with Emily">
-                    <p>Emily Hendley - Maid of Honor</p>
-                </div>
-                <div class="party-member">
-                    <img src="images/bride_with_bridesmaid3.jpg" alt="Bride with Georgia">
-                    <p>Georgia Hill - Bridesmaid</p>
-                </div>
-                <div class="party-member">
-                    <img src="images/bride_with_bridesmaid4.jpg" alt="Bride with Vaughn">
-                    <p>Vaughn Smith- Bridesmaid</p>
-                </div>
-                <div class="party-member">
-                    <img src="images/bride_with_bridesmaid4.jpg" alt="Bride with Samantha">
-                    <p>Samantha Morrill- Bridesmaid</p>
-                </div>
-                <div class="party-member">
-                    <img src="images/bride_with_bridesmaid4.jpg" alt="Bride with Sarah">
-                    <p>Sarah Morrill- Bridesmaid</p>
-                </div>
-            </div>
-        
-            <div class="party-section">
-                <h3>The Groom & Groomsmen</h3>
-                <div class="party-member">
-                    <img src="images/groom_with_groomsman1.jpg" alt="Groom with Joe">
-                    <p>Joe Albarran - Best Man</p>
-                </div>
-                <div class="party-member">
-                    <img src="images/groom_with_groomsman2.jpg" alt="Groom with Matt">
-                    <p>Matt English - Groomsman</p>
-                </div>
-                <div class="party-member">
-                    <img src="images/groom_with_groomsman3.jpg" alt="Groom with Eric">
-                    <p>Eric Schaffer - Groomsman</p>
-                </div>
-                <div class="party-member">
-                    <img src="images/groom_with_groomsman4.jpg" alt="Groom with Kyle M.">
-                    <p>Kyle Maka - Groomsman</p>
-                </div>
-                <div class="party-member">
-                    <img src="images/groom_with_groomsman4.jpg" alt="Groom with Kyle Y.">
-                    <p>Kyle Younker - Groomsman</p>
-                </div>
-                <div class="party-member">
-                    <img src="images/groom_with_groomsman4.jpg" alt="Groom with Bill">
-                    <p>Bill Chilman - Groomsman</p>
-                </div>
-            </div>
+            <p>Details about the wedding party go here.</p>
         </div>
-        
 
         <div id="qa" class="content" style="display: none;">
-            <p>Add Q&A.... maybe add a way people can post their questions?</p>
+            <p>Questions and Answers section.</p>
         </div>
 
         <div id="registry" class="content" style="display: none;">
-            <p>Not registry though? dunno what to put here yet</p>
+            <p>Registry or alternative content goes here.</p>
         </div>
     </div>
 
-    <script defer src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
