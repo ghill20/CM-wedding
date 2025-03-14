@@ -47,10 +47,11 @@ body {
 .subtitle {
   font-family: 'Quicksand', sans-serif;
   font-weight: 100;
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 5vw, 1.5rem); /* Scales the font size between 1rem and 1.5rem based on screen width */
   letter-spacing: clamp(2px, 1vw, 5px);
   margin-bottom: 5px;
 }
+
 
 
 /*                           */
@@ -66,7 +67,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 10px;
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 6vw, 2rem); /* Scales the font size between 1.5rem and 2rem based on screen width */
   font-weight: bold;
   color: rgb(0, 0, 0);
   margin-top: 40px;
@@ -80,18 +81,19 @@ body {
 }
 
 .countdown-item span {
-  font-size: 1rem;
+  font-size: clamp(1rem, 3vw, 1.2rem); /* Scales the time unit label */
   font-weight: normal;
   color: rgb(0, 0, 0);
 }
 
 .separator {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 5vw, 2rem); /* Makes separators flexible as well */
   color: rgb(0, 0, 0);
   position: relative;
   top: 3px;
   padding: 0 5px;
 }
+
 
 
 /*                          */
@@ -109,21 +111,26 @@ body {
 /*                           */
 
 
+/*                           */
+/*       BEGIN NAV BAR       */
+/*                           */
+
 .navbar {
   display: flex;
   justify-content: center;
-  gap: 30px;
+  gap: 20px; /* Reduced gap for more compactness on smaller screens */
   margin: 20px 0;
   padding: 10px;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
 }
 
 .navbar a {
   font-family: 'Quicksand', sans-serif;
   text-decoration: none;
   color: black;
-  font-size: 1rem;
+  font-size: clamp(1rem, 3vw, 1.2rem); /* Scales font size between 1rem and 1.2rem */
   position: relative;
 }
 
@@ -149,6 +156,18 @@ body {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
+
+@media (max-width: 600px) {
+  .navbar {
+    justify-content: space-evenly; /* Spread items evenly on smaller screens */
+    gap: 10px; /* Reduce the gap between links on small screens */
+  }
+
+  .navbar a {
+    font-size: 1rem; /* Slightly smaller font on mobile */
+  }
+}
+
 
 
 /*                          */
@@ -265,51 +284,46 @@ body {
 /*                           */
 /*                           */
 
+/*                           */
+/*  BEGIN WEDDING PARTY TAB  */
+/*                           */
+
 .party-section {
   margin-top: 30px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Responsive grid with a minimum column width */
-  gap: 20px; /* Adds space between the items */
-  justify-items: center; /* Centers the content in each grid cell */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .party-member {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  background-color: #fff; /* Adds background to make each member stand out */
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Softer shadow for a more elegant look */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.party-member:hover {
-  transform: translateY(-5px); /* Adds a hover effect to lift the card */
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Enhances shadow on hover */
+  margin-bottom: 20px;
 }
 
 .party-member img {
   width: 100%;
-  max-width: 280px;
+  max-width: 300px;
   height: auto;
   border-radius: 10px;
-  margin-bottom: 15px;
-}
-
-.party-member h3 {
-  font-family: 'Quicksand', sans-serif;
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #333;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 10px;
 }
 
 .party-member p {
   font-family: 'Quicksand', sans-serif;
-  font-size: 1.1rem;
-  color: #555;
+  font-size: clamp(1rem, 3vw, 1.2rem); /* Adjust font size to be responsive */
+  text-align: center;
+  color: #333;
+  margin: 0;
+}
+
+.party-member h3 {
+  font-size: clamp(1.5rem, 4vw, 2rem); /* Adjust heading font size for flexibility */
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 /* Make sure it looks good on mobile */
@@ -317,20 +331,17 @@ body {
   .party-member img {
     max-width: 90%;
   }
-
-  .party-member h3 {
-    font-size: 1.5rem;
-  }
-
   .party-member p {
     font-size: 1rem;
+  }
+  .party-member h3 {
+    font-size: 1.5rem;
   }
 }
 
 /*                          */
 /* END OF WEDDING PARTY TAB */
 /*                          */
-
 
 
 
