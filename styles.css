@@ -259,65 +259,78 @@ body {
 }
 
 
-
 /*                           */
 /*                           */
 /*  BEGIN WEDDING PARTY TAB  */
 /*                           */
 /*                           */
 
-
 .party-section {
   margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Responsive grid with a minimum column width */
+  gap: 20px; /* Adds space between the items */
+  justify-items: center; /* Centers the content in each grid cell */
 }
 
 .party-member {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
+  text-align: center;
+  background-color: #fff; /* Adds background to make each member stand out */
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Softer shadow for a more elegant look */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.party-member:hover {
+  transform: translateY(-5px); /* Adds a hover effect to lift the card */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Enhances shadow on hover */
 }
 
 .party-member img {
   width: 100%;
-  max-width: 300px;
+  max-width: 280px;
   height: auto;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+.party-member h3 {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
   margin-bottom: 10px;
 }
 
 .party-member p {
   font-family: 'Quicksand', sans-serif;
-  font-size: 1.2rem;
-  text-align: center;
-  color: #333;
-}
-
-.party-member h3 {
-  font-size: 2rem;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 20px;
+  font-size: 1.1rem;
+  color: #555;
 }
 
 /* Make sure it looks good on mobile */
 @media (max-width: 600px) {
   .party-member img {
-      max-width: 90%;
+    max-width: 90%;
   }
-  .party-member p {
-      font-size: 1rem;
-  }
+
   .party-member h3 {
-      font-size: 1.5rem;
+    font-size: 1.5rem;
+  }
+
+  .party-member p {
+    font-size: 1rem;
   }
 }
-
 
 /*                          */
 /* END OF WEDDING PARTY TAB */
 /*                          */
+
 
 
 
