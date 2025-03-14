@@ -47,9 +47,9 @@ body {
 .subtitle {
   font-family: 'Quicksand', sans-serif;
   font-weight: 100;
-  font-size: clamp(1rem, 5vw, 1.5rem); /* Scales the font size between 1rem and 1.5rem based on screen width */
-  letter-spacing: clamp(2px, 1vw, 5px);
-  margin-bottom: 5px;
+  font-size: clamp(1rem, 4vw, 1.2rem); /* Scales the font size between 1rem and 1.5rem based on screen width */
+  letter-spacing: clamp(2px, 1vw, 4px);
+  margin-bottom: clamp(10px, 2vw, 30px);
 }
 
 
