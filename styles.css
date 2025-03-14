@@ -321,27 +321,24 @@ body {
 
 
 
-#photos {
-  display: block; /* Ensure it's visible */
-}
-
-#photos .photo-gallery {
+.photo-gallery {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
 }
 
-#photos img {
-  width: 200px; /* Control image width */
-  height: auto; /* Keep aspect ratio */
-  display: block;
-  margin: 10px auto; /* Center images */
-  border-radius: 10px; /* Optional: Rounded corners */
+.photo-gallery img {
+  width: 100%;      /* Makes image take up full width */
+  max-width: 600px; /* Limits the max width of the image */
+  height: auto;     /* Maintains aspect ratio */
+  display: block;   /* Ensures each image is treated as a block element */
+  margin: 10px 0;   /* Adds vertical spacing between images */
+  border-radius: 10px;   /* Optional: Adds rounded corners */
 }
 
 @media (max-width: 600px) {
-  #photos img {
-    width: 150px; /* Make images smaller on mobile */
+  .photo-gallery img {
+    max-width: 100%;    /* Makes images responsive on smaller screens */
   }
 }
