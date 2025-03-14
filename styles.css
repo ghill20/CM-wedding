@@ -320,3 +320,28 @@ body {
 /*                          */
 
 
+
+#photos {
+  display: block; /* Ensure it's visible */
+}
+
+#photos .photo-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+#photos img {
+  width: 200px; /* Control image width */
+  height: auto; /* Keep aspect ratio */
+  display: block;
+  margin: 10px auto; /* Center images */
+  border-radius: 10px; /* Optional: Rounded corners */
+}
+
+@media (max-width: 600px) {
+  #photos img {
+    width: 150px; /* Make images smaller on mobile */
+  }
+}
