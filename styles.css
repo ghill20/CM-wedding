@@ -47,9 +47,9 @@ body {
 .subtitle {
   font-family: 'Quicksand', sans-serif;
   font-weight: 100;
-  font-size: clamp(1rem, 4vw, 1.2rem); /* Scales the font size between 1rem and 1.5rem based on screen width */
-  letter-spacing: clamp(2px, 1vw, 4px);
-  margin-bottom: clamp(10px, 2vw, 30px);
+  font-size: clamp(0.8rem, 2vw, 1rem);  /* Adjusting to make the font smaller */
+  letter-spacing: clamp(1px, 1vw, 3px);
+  margin-bottom: clamp(3px, 1vw, 5vw);  /* You can adjust the margin too */
 }
 
 
@@ -344,7 +344,6 @@ body {
 /*                          */
 
 
-
 .photo-gallery {
   display: flex;
   flex-wrap: wrap;
@@ -359,6 +358,16 @@ body {
   display: block;   /* Ensures each image is treated as a block element */
   margin: 10px 0;   /* Adds vertical spacing between images */
   border-radius: 10px;   /* Optional: Adds rounded corners */
+  
+  /* Initial state for slide-in effect */
+  opacity: 0;
+  transform: translateY(50px);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.photo-gallery img.visible {
+  opacity: 1;
+  transform: translateY(0); /* Slide to original position */
 }
 
 @media (max-width: 600px) {
@@ -366,3 +375,4 @@ body {
     max-width: 100%;    /* Makes images responsive on smaller screens */
   }
 }
+

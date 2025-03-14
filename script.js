@@ -54,4 +54,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Initialize the first section to be visible
     document.getElementById('home').style.display = 'block';
+
+
+    window.addEventListener('scroll', () => {
+        const images = document.querySelectorAll('.photo-gallery img');
+        const windowHeight = window.innerHeight;
+      
+        images.forEach(image => {
+          const imageTop = image.getBoundingClientRect().top;
+          if (imageTop < windowHeight - 150) {
+            image.classList.add('visible');
+          }
+        });
+      });
+      
+
+
 });
