@@ -46,6 +46,13 @@ body {
   color: white;
 }
 
+@media (max-width: 600px) {
+  .hero-section {
+    background-position: center 25%; /* Adjust background position for mobile */
+    background-attachment: fixed;
+  }
+}
+
 /* Dark overlay to improve text readability */
 .hero-section::before {
   content: "";

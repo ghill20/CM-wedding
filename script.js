@@ -66,6 +66,14 @@ document.addEventListener('DOMContentLoaded', function () {
             image.classList.add('visible');
           }
         });
+    });
+      
+      window.addEventListener('scroll', function() {
+        var scrollPosition = window.scrollY; // Get the scroll position
+        var heroSection = document.querySelector('.hero-section'); // Target the hero section
+        
+        // Adjust the background position based on scroll
+        heroSection.style.backgroundPosition = 'center ' + (scrollPosition * 0.25) + 'px';
       });
       
 
