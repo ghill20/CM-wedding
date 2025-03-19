@@ -74,10 +74,10 @@ document.addEventListener('DOMContentLoaded', function () {
         if (heroSection) {
             // For desktop: use the background-attachment scroll effect
             if (window.innerWidth > 600) {
-                heroSection.style.backgroundPosition = 'center ' + (scrollPosition * 0.25) + 'px';
+                heroSection.style.backgroundPosition = 'center ' + (scrollPosition * 0.5) + 'px';
             } else {
                 // For mobile: simulate parallax effect manually
-                heroSection.style.backgroundPosition = 'center ' + (scrollPosition * 0.5) + 'px';
+                heroSection.style.backgroundPosition = 'center ' + (scrollPosition * 0.75) + 'px';
             }
         }
     });
