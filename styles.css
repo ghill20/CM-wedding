@@ -31,6 +31,47 @@ body {
   padding: 0;
 }
 
+/* Hero Section - Full Page Background */
+.hero-section {
+  position: relative;
+  height: 100vh; /* Full viewport height */
+  background-image: url('pictures/cover_photo.jpeg'); /* Replace with your actual image */
+  background-size: cover;
+  background-position: center 25%;
+  background-attachment: fixed; /* Creates the still scrolling effect */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+/* Dark overlay to improve text readability */
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Adjust darkness */
+}
+
+/* Text styling inside hero section */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+/* Ensures the rest of the page background is white */
+.content-section {
+  padding: 50px;
+  text-align: center;
+  background-color: #f8f8f8;
+}
+
 .container {
   max-width: 800px;
   margin: 50px auto;
@@ -69,7 +110,7 @@ body {
   gap: 10px;
   font-size: clamp(1.5rem, 6vw, 2rem); /* Scales the font size between 1.5rem and 2rem based on screen width */
   font-weight: bold;
-  color: rgb(0, 0, 0);
+  color: #000000;
   margin-top: 40px;
   margin-bottom: 40px;
 }
@@ -83,12 +124,12 @@ body {
 .countdown-item span {
   font-size: clamp(1rem, 3vw, 1.2rem); /* Scales the time unit label */
   font-weight: normal;
-  color: rgb(0, 0, 0);
+  color: #000000;
 }
 
 .separator {
   font-size: clamp(1.5rem, 5vw, 2rem); /* Makes separators flexible as well */
-  color: rgb(0, 0, 0);
+  color: #000000;
   position: relative;
   top: 3px;
   padding: 0 5px;
@@ -321,21 +362,22 @@ body {
 
 
 .photo-gallery {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two equal columns */
+  gap: 0; /* Remove any spacing between images */
   justify-content: center;
-  gap: 10px;
+  width: 100%; /* Full width */
 }
 
 .photo-gallery img {
-  width: 100%;      /* Makes image take up full width */
-  max-width: 600px; /* Limits the max width of the image */
-  height: auto;     /* Maintains aspect ratio */
-  display: block;   /* Ensures each image is treated as a block element */
-  margin: 10px 0;   /* Adds vertical spacing between images */
-  border-radius: 10px;   /* Optional: Adds rounded corners */
-  
-  /* Initial state for slide-in effect */
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Ensures consistent image sizing */
+  display: block;
+  border-radius: 0; /* Remove rounded corners */
+  margin: 0; /* Remove spacing around images */
+
+  /* Slide-in effect */
   opacity: 0;
   transform: translateY(50px);
   transition: transform 0.5s ease, opacity 0.5s ease;
@@ -346,9 +388,16 @@ body {
   transform: translateY(0); /* Slide to original position */
 }
 
+/* Sixth image spans the full width */
+.photo-gallery img:nth-child(7) {
+  grid-column: span 2; /* Makes it take up the whole row */
+}
+
+/* Mobile adjustments */
 @media (max-width: 600px) {
-  .photo-gallery img {
-    max-width: 100%;    /* Makes images responsive on smaller screens */
+  .photo-gallery {
+    grid-template-columns: repeat(1, 1fr); /* Single column for small screens */
   }
 }
+
 

@@ -9,97 +9,97 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1 class="title">CHAZ & MEGAN</h1>
-        <p class="subtitle">AUGUST 2, 2025 · BANNISTER, MI, USA</p>
-        
+    <!-- Hero Section (Fixed Background Image with Content on Top) -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="title">CHAZ & MEGAN</h1>
+            <p class="subtitle">AUGUST 2, 2025 · BANNISTER, MI, USA</p>
+        </div>
+    </section>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="#home" class="tab active" data-target="home">Home</a>
+        <a href="#photos" class="tab" data-target="photos">Photos</a>
+        <a href="#wedding-party" class="tab" data-target="wedding-party">Wedding Party</a>
+        <a href="#qa" class="tab" data-target="qa">Q + A</a>
+        <a href="#registry" class="tab" data-target="registry">Registry</a>
+    </nav>
+
+    <!-- Home Section -->
+    <div id="home" class="content" data-aos="fade-up">
+        <p>We're so excited to celebrate with you.</p>
+
         <!-- Countdown Timer -->
         <div id="countdown">
             <div class="countdown-item">
-              <div id="days">00</div>
-              <span>Days</span>
+                <div id="days">00</div>
+                <span>Days</span>
             </div>
             <div class="separator">:</div>
             <div class="countdown-item">
-              <div id="hours">00</div>
-              <span>Hours</span>
+                <div id="hours">00</div>
+                <span>Hours</span>
             </div>
             <div class="separator">:</div>
             <div class="countdown-item">
-              <div id="minutes">00</div>
-              <span>Minutes</span>
+                <div id="minutes">00</div>
+                <span>Minutes</span>
             </div>
             <div class="separator">:</div>
             <div class="countdown-item">
-              <div id="seconds">00</div>
-              <span>Seconds</span>
+                <div id="seconds">00</div>
+                <span>Seconds</span>
             </div>
         </div>
 
-        <!-- Navbar -->
-        <nav class="navbar">
-            <a href="#home" class="tab active" data-target="home">Home</a>
-            <a href="#photos" class="tab" data-target="photos">Photos</a>
-            <a href="#wedding-party" class="tab" data-target="wedding-party">Wedding Party</a>
-            <a href="#qa" class="tab" data-target="qa">Q + A</a>
-            <a href="#registry" class="tab" data-target="registry">Registry</a>
-        </nav>
+        <!-- RSVP Button and Form -->
+        <div id="rsvp-container">
+            <button id="rsvp-button" class="rsvp-button">RSVP</button>
 
-        <!-- Home Section -->
-        <div id="home" class="content" data-aos="fade-up">
-            <p>We're so excited to celebrate with you.</p>
+            <!-- RSVP Form (Initially Hidden) -->
+            <form id="rsvp-form" action="https://script.google.com/macros/s/AKfycbxywJltUVjJvY0TTRiMzndWql1DNaUdBTM-5DUvrdwGnk8H0swzx8NJJ2ao1t4e0SP5/exec" method="POST" style="display: none;">
+                <input type="text" name="guest-name" placeholder="Name" required>
+                <label for="guest-count">Number of Guests:</label>
+                <select id="guest-count" name="num-resp" required>
+                    <option value="">Select guests</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <select id="guest-rsvp" name="guest-rsvp" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <button type="submit">Submit RSVP</button>
+            </form>                
+        </div>            
+    </div>
 
-            <!-- RSVP Button and Form -->
-            <div id="rsvp-container">
-                <button id="rsvp-button" class="rsvp-button">RSVP</button>
+    <div id="home-details" class="home-details content" data-aos="fade-up">
+        <p>Click here for directions to <strong>The Milestone Barn:</strong></p>
+        <a href="https://www.google.com/maps/place/The+Milestone+Barn/" target="_blank">Get Directions</a>                 
+    </div>
 
-                <!-- RSVP Form (Initially Hidden) -->
-                <form id="rsvp-form" action="https://script.google.com/macros/s/AKfycbxywJltUVjJvY0TTRiMzndWql1DNaUdBTM-5DUvrdwGnk8H0swzx8NJJ2ao1t4e0SP5/exec" method="POST" style="display: none;">
-                    <input type="text" name="guest-name" placeholder="Name" required>
-                    <label for="guest-count">Number of Guests:</label>
-                    <select id="guest-count" name="num-resp" required>
-                        <option value="">Select guests</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <select id="guest-rsvp" name="guest-rsvp" required>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                    </select>
-                    <button type="submit">Submit RSVP</button>
-                </form>                
-            </div>            
+    <!-- Photos Section -->
+    <div id="photos" class="content" style="display: none;">
+        <div class="photo-gallery">
+            <img src="pictures/CM_engagement_2.jpeg" alt="Engagement Photo 2">
+            <img src="pictures/CM_engagement_10.jpeg" alt="Engagement Photo 10">
+            <img src="pictures/CM_engagement_3.jpeg" alt="Engagement Photo 3">
+            <img src="pictures/CM_engagement_4.jpeg" alt="Engagement Photo 4">
+            <img src="pictures/CM_engagement_5.jpeg" alt="Engagement Photo 5">
+            <img src="pictures/CM_engagement_9.jpeg" alt="Engagement Photo 9">
+            <img src="pictures/CM_engagement_6.jpeg" alt="Engagement Photo 6">
+            <img src="pictures/CM_engagement_7.jpeg" alt="Engagement Photo 7">
+            <img src="pictures/CM_engagement_8.jpeg" alt="Engagement Photo 8">
         </div>
-
-        <div id="home-details" class="home-details content" data-aos="fade-up">
-            <p>Click here for directions to <strong>The Milestone Barn:</strong></p>
-            <a href="https://www.google.com/maps/place/The+Milestone+Barn/" target="_blank">Get Directions</a>                 
-        </div>
-
-        <!-- Photos Section -->
-        <div id="photos" class="content" style="display: none;">
-            <div class="photo-gallery">
-                <img src="pictures/CM_engagement_1.jpeg" alt="Engagement Photo 1">
-                <img src="pictures/CM_engagement_2.jpeg" alt="Engagement Photo 2">
-                <img src="pictures/CM_engagement_3.jpeg" alt="Engagement Photo 3">
-                <img src="pictures/CM_engagement_4.jpeg" alt="Engagement Photo 4">
-                <img src="pictures/CM_engagement_5.jpeg" alt="Engagement Photo 5">
-                <img src="pictures/CM_engagement_6.jpeg" alt="Engagement Photo 6">
-                <img src="pictures/CM_engagement_7.jpeg" alt="Engagement Photo 7">
-                <img src="pictures/CM_engagement_8.jpeg" alt="Engagement Photo 8">
-                <img src="pictures/CM_engagement_9.jpeg" alt="Engagement Photo 9">
-                <img src="pictures/CM_engagement_10.jpeg" alt="Engagement Photo 10">
-            </div>
-        </div>
-        
+    </div>
 
     <!-- Wedding Party Section -->
     <div id="wedding-party" class="content" style="display: none;">
-        <!-- Removed Wedding Party Title as per your request -->
-
         <div class="party-member">
             <h3>Groomsmen</h3>
             <div class="party-list">
