@@ -55,27 +55,30 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initialize the first section to be visible
     document.getElementById('home').style.display = 'block';
 
-
     window.addEventListener('scroll', () => {
         const images = document.querySelectorAll('.photo-gallery img');
         const windowHeight = window.innerHeight;
-      
+
+        // Image fade-in effect on scroll
         images.forEach(image => {
-          const imageTop = image.getBoundingClientRect().top;
-          if (imageTop < windowHeight - 150) {
-            image.classList.add('visible');
-          }
+            const imageTop = image.getBoundingClientRect().top;
+            if (imageTop < windowHeight - 150) {
+                image.classList.add('visible');
+            }
         });
+
+        // Hero section parallax background effect
+        const scrollPosition = window.scrollY;
+        const heroSection = document.querySelector('.hero-section');
+
+        if (heroSection) {
+            // For desktop: use the background-attachment scroll effect
+            if (window.innerWidth > 600) {
+                heroSection.style.backgroundPosition = 'center ' + (scrollPosition * 0.25) + 'px';
+            } else {
+                // For mobile: simulate parallax effect manually
+                heroSection.style.backgroundPosition = 'center ' + (scrollPosition * 0.5) + 'px';
+            }
+        }
     });
-      
-      window.addEventListener('scroll', function() {
-        var scrollPosition = window.scrollY; // Get the scroll position
-        var heroSection = document.querySelector('.hero-section'); // Target the hero section
-        
-        // Adjust the background position based on scroll
-        heroSection.style.backgroundPosition = 'center ' + (scrollPosition * 0.25) + 'px';
-      });
-      
-
-
 });
