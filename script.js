@@ -4,11 +4,28 @@ document.addEventListener('DOMContentLoaded', function () {
     // RSVP Button and Form functionality
     const rsvpButton = document.getElementById('rsvp-button');
     const rsvpForm = document.getElementById('rsvp-form');
+    const guestNameInput = document.getElementById("guest-name");
+    const numGuestsDropdown = document.getElementById("guest-count");
+    const errorMessage = document.getElementById("error-message");
+
+    // Load guest list
+    let guestList = [];
+    fetch("guest_list.json")
+        .then(response => response.json())
+        .then(data => guestList = data)
+        .catch(error => console.error("Error loading guest list:", error));
+
+    // Check if the user has already RSVP'd
+    const userRSVP = localStorage.getItem("userRSVP");
+    if (userRSVP) {
+        if (rsvpButton) rsvpButton.style.display = 'none';
+        if (rsvpForm) rsvpForm.style.display = 'none';
+    }
 
     if (rsvpButton && rsvpForm) {
         rsvpButton.addEventListener('click', function () {
-            rsvpForm.style.display = 'block';  // Show the form
-            rsvpButton.style.display = 'none'; // Hide the RSVP button
+            rsvpForm.style.display = 'block';
+            rsvpButton.style.display = 'none';
         });
     }
 
@@ -87,4 +104,45 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     handleScrollEffects(); // Run on load in case images are already in view
+
+    // Match guest name and set max guests allowed
+    guestNameInput.addEventListener("input", function () {
+        const enteredName = this.value.toLowerCase().trim();
+        const matchedGuest = guestList.find(guest => guest.name.toLowerCase() === enteredName);
+
+        if (matchedGuest) {
+            errorMessage.style.display = "none";
+            numGuestsDropdown.innerHTML = "";
+
+            for (let i = 1; i <= matchedGuest.max_guests; i++) {
+                let option = document.createElement("option");
+                option.value = i;
+                option.textContent = i;
+                numGuestsDropdown.appendChild(option);
+            }
+
+            numGuestsDropdown.disabled = false;
+        } else {
+            numGuestsDropdown.innerHTML = "<option value='1'>1</option>";
+            numGuestsDropdown.disabled = true;
+            errorMessage.style.display = "block";
+        }
+    });
+
+    // RSVP Form Submission (Lock RSVP)
+    const rsvpFormElement = document.getElementById("rsvp-form");
+
+    rsvpFormElement.addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent actual form submission
+
+        const guestName = guestNameInput.value.trim();
+        if (!guestList.some(guest => guest.name.toLowerCase() === guestName.toLowerCase())) {
+            alert("Sorry, your name is not on the guest list.");
+            return;
+        }
+
+        localStorage.setItem("userRSVP", "true"); // Store RSVP status
+        alert("Thank you for your RSVP!");
+        rsvpForm.style.display = 'none';
+    });
 });
