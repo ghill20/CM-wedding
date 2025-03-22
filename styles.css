@@ -158,6 +158,23 @@ body {
 /*                          */
 
 
+.map-button {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.map-button:hover {
+  background-color: #45a049;
+}
+
 
 
 /*                           */
@@ -218,11 +235,66 @@ body {
   }
 }
 
+.content {
+  display: none; /* Hide by default */
+}
+
+.content:target {
+  display: block; /* Show when selected */
+}
 
 
 /*                          */
 /*        END NAV BAR       */
 /*                          */
+
+
+
+
+
+
+
+/* Basic button styling */
+.map-button {
+  padding: 12px 20px;
+  background-color: #4CAF50;  /* Green background */
+  color: white;
+  border: none;
+  border-radius: 8px; /* Rounded corners */
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;  /* Smooth transition for hover effects */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Light shadow effect */
+}
+
+/* Button hover effect */
+.map-button:hover {
+  background-color: #45a049;  /* Slightly darker green */
+  transform: translateY(-2px);  /* Button lifts up slightly */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);  /* Stronger shadow on hover */
+}
+
+/* Active button effect */
+.map-button:active {
+  background-color: #388e3c;  /* Darker green when button is pressed */
+  transform: translateY(0);  /* Button returns to its normal position */
+  box-shadow: none;  /* Remove shadow when pressed */
+}
+
+/* Button focus styling (for accessibility) */
+.map-button:focus {
+  outline: none;
+  border: 2px solid #3f51b5;  /* Add blue border on focus */
+}
+
+
+
+
+
+
+
+
 
 
 .details {
@@ -332,10 +404,6 @@ body {
 /*                           */
 /*  BEGIN WEDDING PARTY TAB  */
 /*                           */
-/*                           */
-
-/*                           */
-/*  BEGIN WEDDING PARTY TAB  */
 /*                           */
 
 #party-member {

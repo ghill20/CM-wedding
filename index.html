@@ -59,14 +59,14 @@
 
             <!-- RSVP Form (Initially Hidden) -->
             <form id="rsvp-form" action="https://script.google.com/macros/s/AKfycbxe3XFos_KPUrw6f270Ue85_nrSyrBoQiQRvhjdIpjTma9yVY_BSjgC6_W6tn45T6S-/exec" method="POST" style="display: none;">
-                <input type="text" name="guest-name" placeholder="Name" required>
-                <label for="guest-count">Number of Guests:</label>
+                <input type="text" name="guest-name" id="guest-name" placeholder="Enter First and Last Names" required>
 
                 <!-- Number of Guests dropdown, initially hidden -->
-                <select id="guest-count" name="num-resp" required style="display: none;">
+                <label for="guest-count" >Number of Guests:</label>
+                <select id="guest-count" name="num-resp">
                     <option value="">Select guests</option>
                 </select>
-                <select id="guest-rsvp" name="guest-rsvp" required style="display: none;">
+                <select id="guest-rsvp" name="guest-rsvp">
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
@@ -75,11 +75,37 @@
         </div>            
     </div>
 
-    <div id="home-details" class="home-details content">
-        <p>Click here for directions to <strong>The Milestone Barn:</strong></p>
-        <a href="https://www.google.com/maps/place/The+Milestone+Barn/" target="_blank">Get Directions</a>                 
-    </div>
+<div id="home-details" class="home-details content">
+    <p>Click below for directions to <strong>The Milestone Barn:</strong></p>
 
+    <!-- Google Maps Button -->
+    <a href="https://www.google.com/maps/dir/?api=1&destination=The+Milestone+Barn,+3801+Mohr+Rd,+Bannister,+MI+48807" 
+    target="_blank">
+        <button class="map-button" id="google-maps-btn">Open in Google Maps</button>
+    </a>
+
+    <!-- Apple Maps Button -->
+    <a href="https://maps.apple.com/?q=The+Milestone+Barn,+3801+Mohr+Rd,+Bannister,+MI+48807" 
+    target="_blank">
+        <button class="map-button" id="apple-maps-btn">Open in Apple Maps</button>
+    </a>
+
+    <div id="map-container">
+        <!-- Google Maps Embed -->
+        <iframe 
+            id="google-map" 
+            width="55%" 
+            height="400" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDrar-4FfHFgFGSTE34BzCFdATCf9Luqug&q=The+Milestone+Barn">
+        </iframe>
+    </div>
+</div>
+
+    
     <!-- Photos Section -->
     <div id="photos" class="content" style="display: none;">
         <div class="photo-gallery">

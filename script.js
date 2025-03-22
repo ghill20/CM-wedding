@@ -6,13 +6,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const rsvpForm = document.getElementById('rsvp-form');
     const guestNameInput = document.getElementById("guest-name");
     const numGuestsDropdown = document.getElementById("guest-count");
+    const rsvpDropdown = document.getElementById("rsvp-dropdown"); // Yes/No RSVP dropdown
     const errorMessage = document.getElementById("error-message");
 
     // Load guest list
     let guestList = [];
     fetch("guests.json")
         .then(response => response.json())
-        .then(data => guestList = data)
+        .then(data => {
+            guestList = data;
+            console.log("Guest List:", guestList); // Log the guest list to see it
+        })
         .catch(error => console.error("Error loading guest list:", error));
 
     // Check if the user has already RSVP'd
@@ -61,16 +65,25 @@ document.addEventListener('DOMContentLoaded', function () {
     tabs.forEach(tab => {
         tab.addEventListener('click', function () {
             const target = this.getAttribute('data-target');
-
+    
             // Hide all content sections & remove active class from tabs
             contents.forEach(content => content.style.display = 'none');
             tabs.forEach(tab => tab.classList.remove('active'));
-
+    
             // Show selected section & highlight active tab
-            document.getElementById(target).style.display = 'block';
+            const targetSection = document.getElementById(target);
+            targetSection.style.display = 'block';
             this.classList.add('active');
+    
+            // Reload map section if coming back to home
+            if (target === 'home') {
+                const iframe = document.getElementById("google-map");
+                if (iframe) {
+                    iframe.src = iframe.src;  // Reload the iframe
+                }
+            }
         });
-    });
+    });    
 
     // Ensure the first section is visible initially
     document.getElementById('home').style.display = 'block';
@@ -105,29 +118,49 @@ document.addEventListener('DOMContentLoaded', function () {
 
     handleScrollEffects(); // Run on load in case images are already in view
 
-    // Match guest name and set max guests allowed
-    guestNameInput.addEventListener("input", function () {
-        const enteredName = this.value.toLowerCase().trim();
-        const matchedGuest = guestList.find(guest => guest.name.toLowerCase() === enteredName);
-
-        if (matchedGuest) {
-            errorMessage.style.display = "none";
-            numGuestsDropdown.innerHTML = "";
-
-            for (let i = 1; i <= matchedGuest.max_guests; i++) {
-                let option = document.createElement("option");
-                option.value = i;
-                option.textContent = i;
-                numGuestsDropdown.appendChild(option);
+    if (guestNameInput) {
+        guestNameInput.addEventListener("input", function () {
+            const enteredName = this.value.toLowerCase().trim().replace(/,/g, '');  // Remove commas
+            console.log("Entered Name:", enteredName);  // Log entered name
+    
+            if (enteredName === "") {
+                numGuestsDropdown.innerHTML = "<option value=''>Select guests</option>";
+                numGuestsDropdown.disabled = true;
+                if (errorMessage) {
+                    errorMessage.style.display = "none";
+                }
+                return;
             }
-
-            numGuestsDropdown.disabled = false;
-        } else {
-            numGuestsDropdown.innerHTML = "<option value='1'>1</option>";
-            numGuestsDropdown.disabled = true;
-            errorMessage.style.display = "block";
-        }
-    });
+    
+            // Ensure the guest list is available and all guest objects have a 'name' property
+            const matchedGuest = guestList.find(guest => guest.name && guest.name.toLowerCase().replace(/,/g, '') === enteredName);  // Remove commas in guest name
+            console.log("Matched Guest:", matchedGuest);  // Log matched guest
+    
+            if (matchedGuest) {
+                if (errorMessage) {
+                    errorMessage.style.display = "none";  // Hide error message
+                }
+                numGuestsDropdown.innerHTML = "<option value=''>Select guests</option>";  // Reset options
+    
+                // Populate dropdown with the allowed number of guests
+                for (let i = 1; i <= matchedGuest.max_guests; i++) {
+                    let option = document.createElement("option");
+                    option.value = i;
+                    option.textContent = i;
+                    numGuestsDropdown.appendChild(option);
+                }
+    
+                numGuestsDropdown.disabled = false;  // Enable the dropdown
+            } else {
+                numGuestsDropdown.innerHTML = "<option value='1'>1</option>";  // Default option
+                numGuestsDropdown.disabled = true;  // Disable the dropdown
+                if (errorMessage) {
+                    errorMessage.style.display = "block";  // Show error message
+                }
+            }
+        });
+    }
+    
 
     // RSVP Form Submission (Lock RSVP)
     const rsvpFormElement = document.getElementById("rsvp-form");
@@ -136,6 +169,8 @@ document.addEventListener('DOMContentLoaded', function () {
         event.preventDefault(); // Prevent actual form submission
 
         const guestName = guestNameInput.value.trim();
+        console.log("Guest Name (on submit):", guestName);  // Log the guest name on submit
+
         if (!guestList.some(guest => guest.name.toLowerCase() === guestName.toLowerCase())) {
             alert("Sorry, your name is not on the guest list.");
             return;
@@ -143,6 +178,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         localStorage.setItem("userRSVP", "true"); // Store RSVP status
         alert("Thank you for your RSVP!");
-        rsvpForm.style.display = 'none';
+        rsvpForm.style.display = 'none'; // Hide the form after submission
     });
 });
