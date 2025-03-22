@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Load guest list
     let guestList = [];
-    fetch("guest_list.json")
+    fetch("guests.json")
         .then(response => response.json())
         .then(data => guestList = data)
         .catch(error => console.error("Error loading guest list:", error));

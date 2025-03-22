@@ -61,11 +61,12 @@
             <form id="rsvp-form" action="https://script.google.com/macros/s/AKfycbxe3XFos_KPUrw6f270Ue85_nrSyrBoQiQRvhjdIpjTma9yVY_BSjgC6_W6tn45T6S-/exec" method="POST" style="display: none;">
                 <input type="text" name="guest-name" placeholder="Name" required>
                 <label for="guest-count">Number of Guests:</label>
-                <select id="guest-count" name="num-resp" required>
+
+                <!-- Number of Guests dropdown, initially hidden -->
+                <select id="guest-count" name="num-resp" required style="display: none;">
                     <option value="">Select guests</option>
-                    <option value="1">1</option>
                 </select>
-                <select id="guest-rsvp" name="guest-rsvp" required>
+                <select id="guest-rsvp" name="guest-rsvp" required style="display: none;">
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
