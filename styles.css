@@ -22,10 +22,11 @@
   font-style: normal;
 }
 
+/* General Styles */
 body {
   font-family: 'The Seasons', serif;
   text-align: center;
-  background-color: #f8f8f8;
+  background-color: #f8f8f8; /* Ensures the rest of the page is white */
   color: #000;
   margin: 0;
   padding: 0;
@@ -35,21 +36,23 @@ body {
 .hero-section {
   position: relative;
   height: 100vh; /* Full viewport height */
-  background-image: url('pictures/cover_photo.jpeg'); /* Replace with your actual image */
+  background: url('pictures/cover_photo.jpeg') no-repeat center 25%;
   background-size: cover;
-  background-position: center 25%;
-  background-attachment: fixed; /* Creates the still scrolling effect */
+  background-attachment: fixed; /* Fixed background only for large screens */
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: white;
+  overflow: hidden; /* Prevents image from overflowing */
 }
 
+/* Mobile-friendly adjustments */
 @media (max-width: 600px) {
   .hero-section {
-    background-position: center 25%; /* Adjust background position for mobile */
-    background-attachment: fixed;
+    background-attachment: scroll; /* Disable fixed background on mobile */
+    background-size: cover;
+    background-position: center;
   }
 }
 
@@ -61,10 +64,11 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Adjust darkness */
+  background: rgba(0, 0, 0, 0.5); /* Adjust for better readability */
+  z-index: 1;
 }
 
-/* Text styling inside hero section */
+/* Text content inside hero section */
 .hero-content {
   position: relative;
   z-index: 2;
@@ -76,14 +80,19 @@ body {
 .content-section {
   padding: 50px;
   text-align: center;
-  background-color: #f8f8f8;
+  background-color: #f8f8f8; /* Makes sure this section is white */
 }
 
+/* Container to control width */
 .container {
   max-width: 800px;
   margin: 50px auto;
+  background-color: white; /* Adds explicit white background */
+  padding: 20px;
+  border-radius: 10px;
 }
 
+/* Typography */
 .title {
   font-family: 'The Seasons', serif;
   font-weight: 300;
@@ -95,9 +104,9 @@ body {
 .subtitle {
   font-family: 'Quicksand', sans-serif;
   font-weight: 100;
-  font-size: clamp(0.8rem, 2vw, 1rem);  /* Adjusting to make the font smaller */
+  font-size: clamp(0.8rem, 2vw, 1rem);
   letter-spacing: clamp(1px, 1vw, 3px);
-  margin-bottom: clamp(3px, 1vw, 5vw);  /* You can adjust the margin too */
+  margin-bottom: clamp(3px, 1vw, 5vw);
 }
 
 

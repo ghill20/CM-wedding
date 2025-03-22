@@ -7,10 +7,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (rsvpButton && rsvpForm) {
         rsvpButton.addEventListener('click', function () {
-            if (rsvpForm.style.display === 'none' || rsvpForm.style.display === '') {
-                rsvpForm.style.display = 'block';  // Show the form
-                rsvpButton.style.display = 'none'; // Hide the RSVP button
-            }
+            rsvpForm.style.display = 'block';  // Show the form
+            rsvpButton.style.display = 'none'; // Hide the RSVP button
         });
     }
 
@@ -19,6 +17,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const weddingDate = new Date("August 2, 2025 00:00:00").getTime();
         const now = new Date().getTime();
         const timeLeft = weddingDate - now;
+
+        if (timeLeft <= 0) {
+            document.getElementById("countdown").textContent = "The big day is here!";
+            return;
+        }
 
         const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
         const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -32,53 +35,56 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     setInterval(updateCountdown, 1000);
+    updateCountdown(); // Initialize on load
 
     // Navbar functionality (for smooth transitions between sections)
     const tabs = document.querySelectorAll('.navbar .tab');
     const contents = document.querySelectorAll('.content');
-    
-    tabs.forEach(tab => {
-        tab.addEventListener('click', (event) => {
-            const target = event.target.getAttribute('data-target');
 
-            // Hide all content sections
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function () {
+            const target = this.getAttribute('data-target');
+
+            // Hide all content sections & remove active class from tabs
             contents.forEach(content => content.style.display = 'none');
-            // Remove active class from all tabs
             tabs.forEach(tab => tab.classList.remove('active'));
-            
-            // Show the clicked content section
+
+            // Show selected section & highlight active tab
             document.getElementById(target).style.display = 'block';
-            event.target.classList.add('active');
+            this.classList.add('active');
         });
     });
 
-    // Initialize the first section to be visible
+    // Ensure the first section is visible initially
     document.getElementById('home').style.display = 'block';
 
-    window.addEventListener('scroll', () => {
+    // Scroll-based effects (Image fade-in and parallax)
+    function handleScrollEffects() {
         const images = document.querySelectorAll('.photo-gallery img');
         const windowHeight = window.innerHeight;
 
-        // Image fade-in effect on scroll
+        // Image fade-in effect
         images.forEach(image => {
             const imageTop = image.getBoundingClientRect().top;
             if (imageTop < windowHeight - 150) {
                 image.classList.add('visible');
             }
         });
+    }
 
-        // Hero section parallax background effect
-        const scrollPosition = window.scrollY;
-        const heroSection = document.querySelector('.hero-section');
+    function updateParallax() {
+        const hero = document.querySelector(".hero-section::before");
+        let scrollY = window.scrollY;
 
-        if (heroSection) {
-            // For desktop: use the background-attachment scroll effect
-            if (window.innerWidth > 600) {
-                heroSection.style.backgroundPosition = 'center ' + (scrollPosition * 0.5) + 'px';
-            } else {
-                // For mobile: simulate parallax effect manually
-                heroSection.style.backgroundPosition = 'center ' + (scrollPosition * 0.75) + 'px';
-            }
+        if (hero) {
+            hero.style.transform = `translateY(${scrollY * 0.5}px)`;
         }
+    }
+
+    window.addEventListener('scroll', () => {
+        handleScrollEffects();
+        updateParallax();
     });
+
+    handleScrollEffects(); // Run on load in case images are already in view
 });
