@@ -32,6 +32,13 @@ body {
   padding: 0;
 }
 
+/* Content section (Main content area) */
+.content {
+  flex: 1; /* Ensure it takes up the remaining space */
+  padding: 20px; /* Optional padding for the content */
+  margin-bottom: 50px; /* Adds space between content and footer */
+}
+
 /* Hero Section - Full Page Background */
 .hero-section {
   position: relative;
@@ -235,21 +242,9 @@ body {
   }
 }
 
-.content {
-  display: none; /* Hide by default */
-}
-
-.content:target {
-  display: block; /* Show when selected */
-}
-
-
 /*                          */
 /*        END NAV BAR       */
 /*                          */
-
-
-
 
 
 
@@ -445,43 +440,105 @@ body {
 /*                          */
 
 
+/* Container for the photo gallery */
 .photo-gallery {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Two equal columns */
-  gap: 0; /* Remove any spacing between images */
-  justify-content: center;
-  width: 100%; /* Full width */
+  grid-template-columns: repeat(3, 1fr); /* Default to 3 columns */
+  gap: 10px;
+  grid-template-rows: auto; /* Automatically adjusts row height based on content */
 }
 
+/* Styling for the images in the photo gallery */
 .photo-gallery img {
   width: 100%;
-  height: auto;
-  object-fit: cover; /* Ensures consistent image sizing */
-  display: block;
-  border-radius: 0; /* Remove rounded corners */
-  margin: 0; /* Remove spacing around images */
-
-  /* Slide-in effect */
-  opacity: 0;
-  transform: translateY(50px);
-  transition: transform 0.5s ease, opacity 0.5s ease;
+  height: auto; /* Maintain aspect ratio */
 }
 
-.photo-gallery img.visible {
-  opacity: 1;
-  transform: translateY(0); /* Slide to original position */
+/* Row 1: 2 images (spanning 2 columns each) */
+.photo-1, .photo-2 {
+  grid-column: span 1;
 }
 
-/* Sixth image spans the full width */
-.photo-gallery img:nth-child(7) {
-  grid-column: span 2; /* Makes it take up the whole row */
+/* Row 2: 3 images */
+.photo-3, .photo-4, .photo-5 {
+  grid-column: span 1;
 }
 
-/* Mobile adjustments */
-@media (max-width: 600px) {
+/* Row 3: 1 image (spans 3 columns) */
+.photo-7 {
+  grid-column: span 3; /* Take up full row */
+}
+
+/* Row 4: 2 images */
+.photo-6, .photo-8 {
+  grid-column: span 1;
+}
+
+/* For mobile and tablet screens: Adjust layout to 2 per row on tablets, 1 per row on mobile */
+@media (max-width: 1024px) {
   .photo-gallery {
-    grid-template-columns: repeat(1, 1fr); /* Single column for small screens */
+    grid-template-columns: repeat(2, 1fr); /* 2 per row */
+  }
+
+  /* For 1 per row on mobile */
+  @media (max-width: 768px) {
+    .photo-gallery {
+      grid-template-columns: 1fr; /* 1 per row */
+    }
   }
 }
 
 
+/*                           */
+/*                           */
+/*   BEGIN FOOTER SECTION    */
+/*                           */
+/*                           */
+
+
+/* Footer Section */
+.footer {
+  background-color: black; /* Set the background to black */
+  color: white; /* Text color is white for contrast */
+  padding: 40px 0; /* Add more padding for a larger footer */
+  text-align: center; /* Center the text horizontally */
+  width: 100%; /* Ensure it spans the full width of the page */
+  position: relative; /* Make sure footer is relative for logo placement */
+}
+
+/* Log Container inside footer */
+.log-container {
+  display: flex;
+  justify-content: center; /* Center the log horizontally */
+  align-items: center; /* Center the log vertically */
+  height: 100%; /* Take up full height of footer */
+  font-size: 14px; /* Font size of the log text */
+  max-width: 80%; /* Optionally limit the width of the log */
+  margin: 0 auto; /* Center the container itself */
+  word-wrap: break-word; /* Ensure text wraps if it's too long */
+}
+
+/* Logo in the center of the footer */
+.footer-logo {
+  display: block;
+  margin: 20px auto; /* Center the logo with margin */
+  max-width: 150px; /* Adjust the max width of the logo */
+  height: auto; /* Keep the aspect ratio of the logo */
+}
+
+/* For mobile views: Adjust footer and logo size */
+@media (max-width: 768px) {
+  .footer {
+      padding: 30px 0; /* Adjust footer padding for smaller screens */
+  }
+
+  .footer-logo {
+      max-width: 120px; /* Adjust logo size for mobile */
+  }
+}
+
+
+
+/*                          */
+/*        END FOOTER        */
+/*                          */

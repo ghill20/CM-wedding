@@ -73,51 +73,50 @@
                 <button type="submit">Submit RSVP</button>
             </form>                
         </div>            
+
+        <div id="home-details" class="home-details content"></div>
+            <p>Click below for directions to <strong>The Milestone Barn:</strong></p>
+
+            <!-- Google Maps Button -->
+            <a href="https://www.google.com/maps/dir/?api=1&destination=The+Milestone+Barn,+3801+Mohr+Rd,+Bannister,+MI+48807" 
+            target="_blank">
+                <button class="map-button" id="google-maps-btn">Open in Google Maps</button>
+            </a>
+
+            <!-- Apple Maps Button -->
+            <a href="https://maps.apple.com/?q=The+Milestone+Barn,+3801+Mohr+Rd,+Bannister,+MI+48807" 
+            target="_blank">
+                <button class="map-button" id="apple-maps-btn">Open in Apple Maps</button>
+            </a>
+
+            <div id="map-container">
+                <!-- Google Maps Embed -->
+                <iframe 
+                    id="google-map" 
+                    width="55%" 
+                    height="400" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDrar-4FfHFgFGSTE34BzCFdATCf9Luqug&q=The+Milestone+Barn">
+                </iframe>
+            </div>
+        </div>
     </div>
-
-<div id="home-details" class="home-details content">
-    <p>Click below for directions to <strong>The Milestone Barn:</strong></p>
-
-    <!-- Google Maps Button -->
-    <a href="https://www.google.com/maps/dir/?api=1&destination=The+Milestone+Barn,+3801+Mohr+Rd,+Bannister,+MI+48807" 
-    target="_blank">
-        <button class="map-button" id="google-maps-btn">Open in Google Maps</button>
-    </a>
-
-    <!-- Apple Maps Button -->
-    <a href="https://maps.apple.com/?q=The+Milestone+Barn,+3801+Mohr+Rd,+Bannister,+MI+48807" 
-    target="_blank">
-        <button class="map-button" id="apple-maps-btn">Open in Apple Maps</button>
-    </a>
-
-    <div id="map-container">
-        <!-- Google Maps Embed -->
-        <iframe 
-            id="google-map" 
-            width="55%" 
-            height="400" 
-            style="border:0;" 
-            allowfullscreen="" 
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDrar-4FfHFgFGSTE34BzCFdATCf9Luqug&q=The+Milestone+Barn">
-        </iframe>
-    </div>
-</div>
-
     
     <!-- Photos Section -->
     <div id="photos" class="content" style="display: none;">
         <div class="photo-gallery">
-            <img src="pictures/CM_engagement_2.jpeg" alt="Engagement Photo 2">
-            <img src="pictures/CM_engagement_10.jpeg" alt="Engagement Photo 10">
-            <img src="pictures/CM_engagement_3.jpeg" alt="Engagement Photo 3">
-            <img src="pictures/CM_engagement_4.jpeg" alt="Engagement Photo 4">
-            <img src="pictures/CM_engagement_5.jpeg" alt="Engagement Photo 5">
-            <img src="pictures/CM_engagement_9.jpeg" alt="Engagement Photo 9">
-            <img src="pictures/CM_engagement_6.jpeg" alt="Engagement Photo 6">
-            <img src="pictures/CM_engagement_7.jpeg" alt="Engagement Photo 7">
-            <img src="pictures/CM_engagement_8.jpeg" alt="Engagement Photo 8">
+            <img src="pictures/CM_engagement_2.jpeg" alt="Engagement Photo 2" class="photo-1">
+            <img src="pictures/CM_engagement_10.jpeg" alt="Engagement Photo 10" class="photo-2">
+            <img src="pictures/CM_engagement_3.jpeg" alt="Engagement Photo 3" class="photo-3">
+            <img src="pictures/CM_engagement_4.jpeg" alt="Engagement Photo 4" class="photo-4">
+            <img src="pictures/CM_engagement_5.jpeg" alt="Engagement Photo 5" class="photo-5">
+            <img src="pictures/CM_engagement_6.jpeg" alt="Engagement Photo 6" class="photo-7">
+            <img src="pictures/CM_engagement_9.jpeg" alt="Engagement Photo 9" class="photo-6">
+            <img src="pictures/CM_engagement_7.jpeg" alt="Engagement Photo 7" class="photo-8">
+            <img src="pictures/CM_engagement_8.jpeg" alt="Engagement Photo 8" class="photo-9">
         </div>
     </div>
 
@@ -147,6 +146,11 @@
             </div>
         </div>
     </div>
+
+    <!-- Footer Section -->
+    <footer id="footer" class="footer">
+        <img src="pictures/CM_white.png" alt="Wedding Logo" class="footer-logo">
+    </footer>
 
     <script src="script.js"></script>
 </body>
