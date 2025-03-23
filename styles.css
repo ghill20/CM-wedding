@@ -62,7 +62,7 @@ body {
   .hero-section {
     background-attachment: scroll; /* Disable fixed background on mobile */
     background-size: cover;
-    background-position: center;
+    background-position: center bottom;
   }
 }
 
