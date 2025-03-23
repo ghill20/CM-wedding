@@ -7,7 +7,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const guestNameInput = document.getElementById("guest-name");
     const numGuestsDropdown = document.getElementById("guest-count");
     const rsvpDropdown = document.getElementById("rsvp-dropdown"); // Yes/No RSVP dropdown
-    const errorMessage = document.getElementById("error-message");
+    const autocompleteList = document.createElement("ul"); // Dropdown for suggestions
+    autocompleteList.classList.add("autocomplete-list");
+    guestNameInput.parentNode.appendChild(autocompleteList);
 
     // Load guest list
     let guestList = [];
@@ -110,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (hero) {
             if (window.innerWidth <= 600) {
                 // On mobile, simulate parallax by adjusting the background position based on scroll
-                hero.style.backgroundPosition = 'center ' + (scrollY * 0.2) + 'px'; // Adjust multiplier for the effect
+                hero.style.backgroundPosition = 'center ' + (scrollY * 0.5) + 'px'; // Adjust multiplier for the effect
             } else {
                 // On desktop, set fixed background position (using CSS fixed background attachment)
                 hero.style.backgroundPosition = 'center 25%';
@@ -136,7 +138,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Run on load to set the initial background position
     updateParallax();
 
-
     if (guestNameInput) {
         guestNameInput.addEventListener("input", function () {
             const enteredName = this.value.toLowerCase().trim().replace(/,/g, '');  // Remove commas
@@ -145,58 +146,63 @@ document.addEventListener('DOMContentLoaded', function () {
             if (enteredName === "") {
                 numGuestsDropdown.innerHTML = "<option value=''>Select guests</option>";
                 numGuestsDropdown.disabled = true;
-                if (errorMessage) {
-                    errorMessage.style.display = "none";
-                }
                 return;
             }
     
-            // Ensure the guest list is available and all guest objects have a 'name' property
-            const matchedGuest = guestList.find(guest => guest.name && guest.name.toLowerCase().replace(/,/g, '') === enteredName);  // Remove commas in guest name
-            console.log("Matched Guest:", matchedGuest);  // Log matched guest
+            // Ensure the guest list is available and all guest objects have a 'guest-name' property
+            const matchedGuests = guestList.filter(guest => guest["guest-name"].toLowerCase().includes(enteredName));  // Check if any name contains the entered letters
+            console.log("Matched Guests:", matchedGuests);  // Log matched guests
     
-            if (matchedGuest) {
-                if (errorMessage) {
-                    errorMessage.style.display = "none";  // Hide error message
-                }
+            if (matchedGuests.length > 0) {
                 numGuestsDropdown.innerHTML = "<option value=''>Select guests</option>";  // Reset options
     
-                // Populate dropdown with the allowed number of guests
-                for (let i = 1; i <= matchedGuest.max_guests; i++) {
+                // Populate dropdown with matching guest names
+                matchedGuests.forEach(matchedGuest => {
                     let option = document.createElement("option");
-                    option.value = i;
-                    option.textContent = i;
+                    option.value = matchedGuest["num-resp"];
+                    option.textContent = matchedGuest["num-resp"];
                     numGuestsDropdown.appendChild(option);
-                }
+                });
     
                 numGuestsDropdown.disabled = false;  // Enable the dropdown
             } else {
-                numGuestsDropdown.innerHTML = "<option value='1'>1</option>";  // Default option
+                numGuestsDropdown.innerHTML = "<option value=''>No guests found</option>";  // Default option when no matches
                 numGuestsDropdown.disabled = true;  // Disable the dropdown
-                if (errorMessage) {
-                    errorMessage.style.display = "block";  // Show error message
-                }
             }
         });
     }
-    
 
     // RSVP Form Submission (Lock RSVP)
     const rsvpFormElement = document.getElementById("rsvp-form");
 
     rsvpFormElement.addEventListener("submit", function (event) {
-        event.preventDefault(); // Prevent actual form submission
-
+        event.preventDefault(); // Prevent default form submission
+        
         const guestName = guestNameInput.value.trim();
         console.log("Guest Name (on submit):", guestName);  // Log the guest name on submit
-
-        if (!guestList.some(guest => guest.name.toLowerCase() === guestName.toLowerCase())) {
+    
+        // Ensure the guest list is available
+        if (!guestList || guestList.length === 0) {
+            alert("The guest list is not available at the moment. Please try again later.");
+            return;
+        }
+    
+        // Check if the entered guest name exists in the guest list
+        const matchedGuest = guestList.find(guest => guest["guest-name"] && guest["guest-name"].toLowerCase() === guestName.toLowerCase());
+        
+        if (!matchedGuest) {
             alert("Sorry, your name is not on the guest list.");
             return;
         }
-
+    
+        // Store the RSVP in local storage (to prevent further submissions)
         localStorage.setItem("userRSVP", "true"); // Store RSVP status
-        alert("Thank you for your RSVP!");
+        
+        // If valid, submit the form (this will send data to Google Sheets)
+        this.submit();  // Manually submit the form after validation
+        
+        alert("Thank you for your RSVP!");  // Show confirmation alert
         rsvpForm.style.display = 'none'; // Hide the form after submission
     });
+    
 });

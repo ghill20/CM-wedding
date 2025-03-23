@@ -53,7 +53,7 @@ body {
   justify-content: center;
   text-align: center;
   color: white;
-  transition: background-position 0.5s ease-out; /* Optional smooth transition */
+  transition: background-position 0.2s ease-out; /* Optional smooth transition */
   /* Removed overflow: hidden to allow content and scroll animations */
 }
 
@@ -339,6 +339,15 @@ body {
   color: #555;
 }
 
+
+
+/*                           */
+/*                           */
+/*     BEGIN RSVP FORM       */
+/*                           */
+/*                           */
+
+
 /* Center the RSVP form container */
 #rsvp-container {
   display: flex;
@@ -350,9 +359,9 @@ body {
 /* RSVP Button Styling (for toggling the form) */
 .rsvp-button {
   display: inline-block;
-  padding: 15px 30px;
+  padding: 12px 25px;
   margin: 20px auto; /* Centers button */
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Arial', sans-serif; /* Changed to Arial */
   font-size: 1.2rem;
   font-weight: bold;
   color: white;
@@ -378,7 +387,7 @@ body {
 #rsvp-form {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Spacing between inputs */
+  gap: 20px; /* Increased gap between inputs to 20px for larger space between fields */
   max-width: 320px;
   width: 100%;
   margin-top: 20px;
@@ -387,14 +396,38 @@ body {
 #rsvp-form label {
   font-weight: bold;
   font-size: 1rem;
+  font-family: 'Arial', sans-serif; /* Changed to Arial */
 }
 
-#rsvp-form input {
+#rsvp-form input, #rsvp-form select {
   padding: 10px;
   font-size: 1rem;
+  font-family: 'Arial', sans-serif; /* Changed to Arial */
   border: 1px solid #ccc;
   border-radius: 5px;
-  width: 100%;
+  width: 100%;  /* Ensure all fields are the same width */
+}
+
+/* Add extra space between the fields */
+#guest-name {
+  margin-bottom: 20px; /* More space below the name input */
+}
+
+#guest-count {
+  margin-bottom: 20px; /* More space below the number of guests dropdown */
+}
+
+#guest-rsvp {
+  margin-bottom: 20px; /* More space below the Yes/No RSVP dropdown */
+}
+
+/* Styling for the "Number of Guests" and "Yes/No RSVP" dropdown */
+#rsvp-form select {
+  background-color: #fff;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 10 10%22%3E%3Cpath d=%22M0 0 L5 5 L10 0%22 fill=%22none%22 stroke=%22#333%22 stroke-width=%22.8%22/%3E%3C/svg%3E');
+  background-position: right 10px center; /* Custom dropdown arrow */
+  background-repeat: no-repeat;
+  appearance: none; /* Remove default dropdown arrow */
 }
 
 /* Submit Button Styling within the form */
@@ -418,6 +451,13 @@ body {
 #rsvp-form button[type="submit"] {
   margin-top: 20px;
 }
+
+
+
+/*                          */
+/*      END RSVP FORM       */
+/*                          */
+
 
 
 /*                           */
@@ -665,6 +705,33 @@ hr {
 /*        END FOOTER        */
 /*                          */
 
+
+
+
+
+
+.autocomplete-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;  /* Ensure the list takes the full width of the input field */
+  max-width: 300px;  /* Limit the width of the list */
+  background-color: white;
+  border: 1px solid #ccc;
+  max-height: 150px;  /* Limit the height */
+  overflow-y: auto;  /* Enable scrolling if there are many suggestions */
+  z-index: 9999;  /* Ensure it's above other content */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.autocomplete-list li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.autocomplete-list li:hover {
+  background-color: #f0f0f0;  /* Highlight on hover */
+}
 
 
 

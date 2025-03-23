@@ -59,10 +59,14 @@
 
             <!-- RSVP Form (Initially Hidden) -->
             <form id="rsvp-form" action="https://script.google.com/macros/s/AKfycbxe3XFos_KPUrw6f270Ue85_nrSyrBoQiQRvhjdIpjTma9yVY_BSjgC6_W6tn45T6S-/exec" method="POST" style="display: none;">
-                <input type="text" name="guest-name" id="guest-name" placeholder="Enter First and Last Names" required>
+                <input type="text" name="guest-name" id="guest-name" placeholder="Enter First and Last Names" list="guest-list">
+
+                <!-- Datalist for Name Suggestions -->
+                <datalist id="guest-list">
+                    <!-- Options will be dynamically populated via JavaScript -->
+                </datalist>
 
                 <!-- Number of Guests dropdown, initially hidden -->
-                <label for="guest-count" >Number of Guests:</label>
                 <select id="guest-count" name="num-resp">
                     <option value="">Select guests</option>
                 </select>
