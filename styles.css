@@ -30,6 +30,7 @@ body {
   color: #000;
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth; /* Enables smooth scrolling across the page */
 }
 
 /* Content section (Main content area) */
@@ -51,7 +52,7 @@ body {
   justify-content: center;
   text-align: center;
   color: white;
-  overflow: hidden; /* Prevents image from overflowing */
+  /* Removed overflow: hidden to allow content and scroll animations */
 }
 
 /* Mobile-friendly adjustments */
@@ -115,6 +116,7 @@ body {
   letter-spacing: clamp(1px, 1vw, 3px);
   margin-bottom: clamp(3px, 1vw, 5vw);
 }
+
 
 
 
@@ -454,37 +456,32 @@ body {
   height: auto; /* Maintain aspect ratio */
 }
 
-/* Row 1: 2 images (spanning 2 columns each) */
-.photo-1, .photo-2 {
+/* Row 1: 3 images */
+.photo-1, .photo-2, .photo-3 {
   grid-column: span 1;
 }
 
 /* Row 2: 3 images */
-.photo-3, .photo-4, .photo-5 {
+.photo-4, .photo-5, .photo-6 {
   grid-column: span 1;
 }
 
-/* Row 3: 1 image (spans 3 columns) */
-.photo-7 {
-  grid-column: span 3; /* Take up full row */
-}
-
-/* Row 4: 2 images */
-.photo-6, .photo-8 {
+/* Row 3: 3 images */
+.photo-7, .photo-8, .photo-9 {
   grid-column: span 1;
 }
 
-/* For mobile and tablet screens: Adjust layout to 2 per row on tablets, 1 per row on mobile */
+/* For tablets: Adjust layout to 2 per row */
 @media (max-width: 1024px) {
   .photo-gallery {
-    grid-template-columns: repeat(2, 1fr); /* 2 per row */
+    grid-template-columns: repeat(2, 1fr); /* 2 per row on tablets */
   }
+}
 
-  /* For 1 per row on mobile */
-  @media (max-width: 768px) {
-    .photo-gallery {
-      grid-template-columns: 1fr; /* 1 per row */
-    }
+/* For mobile: Adjust layout to 2 per row */
+@media (max-width: 768px) {
+  .photo-gallery {
+    grid-template-columns: repeat(2, 1fr); /* 2 per row on mobile */
   }
 }
 
@@ -528,13 +525,13 @@ body {
 
 /* For mobile views: Adjust footer and logo size */
 @media (max-width: 768px) {
-  .footer {
-      padding: 30px 0; /* Adjust footer padding for smaller screens */
-  }
+    .footer {
+        padding: 30px 0; /* Adjust footer padding for smaller screens */
+    }
 
-  .footer-logo {
-      max-width: 120px; /* Adjust logo size for mobile */
-  }
+    .footer-logo {
+        max-width: 120px; /* Adjust logo size for mobile */
+    }
 }
 
 
