@@ -24,7 +24,7 @@
 
 /* General Styles */
 body {
-  font-family: 'The Seasons', serif;
+  font-family: 'Quicksand', sans-serif;
   text-align: center;
   background-color: #f8f8f8; /* Ensures the rest of the page is white */
   color: #000;
@@ -496,41 +496,54 @@ body {
   padding-bottom: 80px; /* More space before footer */
 }
 
+#qa-section, .content, .qa-item {
+  font-family: 'Quicksand', sans-serif;  /* Ensure the correct font is applied */
+  color: #555;  /* Text color */
+}
+
 .qa-section {
   font-family: 'Quicksand', sans-serif;
   line-height: 1.6;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* Ensures Q & A labels stay aligned */
-.qa-item {
+  max-width: 800px; /* Controls the width of the Q&A section */
+  margin: 0 auto;  /* Centers the content horizontally */
+  padding: 0 20px; /* Adds padding for spacing */
+  text-align: left;  /* Align text to the left within the section */
   display: flex;
-  align-items: flex-start;
-  gap: 10px; /* Space between label and text */
-  padding-bottom: 15px;
+  flex-direction: column;
+  align-items: center;  /* This centers the entire section horizontally */
+  justify-content: center; /* This centers the content vertically within the section */
 }
 
-/* Style for "Q:" and "A:" labels */
+/* Ensure each question and answer are clearly separated */
+.qa-item {
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column; /* Stack Q and A vertically */
+  width: 100%; /* Ensures the Q&A fills up the width of the section */
+}
+
 .qa-label {
   font-weight: bold;
   color: #333;
-  width: 40px; /* Fixed width ensures proper alignment */
-  text-align: right;
-  flex-shrink: 0;
+  margin-bottom: 5px;
+  align-self: flex-start; /* Align label to the left */
 }
 
-/* Question and Answer text */
+/* Adjust the question styling */
 .qa-text {
-  color: #555;
-  flex: 1; /* Ensures text takes up remaining space */
-  max-width: 700px;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline; /* Align Q: and A: next to each other */
+  margin-left: 0;  /* Remove left margin for alignment */
 }
 
-/* Ensures only the questions are bold */
 .qa-text .question {
   font-weight: bold;
+  margin-right: 10px; /* Adds space between the Q: and the answer */
+}
+
+.qa-text .answer {
+  color: #555;
 }
 
 /* Horizontal line for separation */
@@ -543,10 +556,6 @@ hr {
 
 /* Mobile-friendly adjustments */
 @media (max-width: 768px) {
-  .qa-label {
-    width: 30px;
-  }
-
   .qa-section {
     padding: 0 25px;
   }
@@ -557,10 +566,6 @@ hr {
 }
 
 @media (max-width: 480px) {
-  .qa-label {
-    width: 25px;
-  }
-
   .qa-section {
     padding: 0 30px;
   }
@@ -576,7 +581,6 @@ hr {
 .email-link:hover {
   text-decoration: underline;
 }
-
 
 
 /*                          */
