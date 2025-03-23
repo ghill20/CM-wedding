@@ -103,17 +103,17 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function updateParallax() {
-        const hero = document.querySelector(".hero-section::before");
+        const hero = document.querySelector(".hero-section"); // Select hero section
         let scrollY = window.scrollY;
 
         if (hero) {
-            hero.style.transform = `translateY(${scrollY * 0.5}px)`;
+            hero.style.backgroundPosition = 'center ' + (25 + scrollY * 0.0001) + '%';
         }
     }
 
     window.addEventListener('scroll', () => {
         handleScrollEffects();
-        updateParallax();
+        updateParallax(); // Call the parallax function during scroll
     });
 
     handleScrollEffects(); // Run on load in case images are already in view

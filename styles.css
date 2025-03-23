@@ -45,6 +45,7 @@ body {
   position: relative;
   height: 100vh; /* Full viewport height */
   background: url('pictures/cover_photo.jpeg') no-repeat center 25%;
+  background-position: center 25%; /* Starts at 25% from the top */
   background-size: cover;
   background-attachment: fixed; /* Fixed background only for large screens */
   display: flex;
@@ -52,6 +53,7 @@ body {
   justify-content: center;
   text-align: center;
   color: white;
+  transition: background-position 0.5s ease-out; /* Optional smooth transition */
   /* Removed overflow: hidden to allow content and scroll animations */
 }
 
@@ -116,7 +118,6 @@ body {
   letter-spacing: clamp(1px, 1vw, 3px);
   margin-bottom: clamp(3px, 1vw, 5vw);
 }
-
 
 
 
@@ -194,7 +195,7 @@ body {
 .navbar {
   display: flex;
   justify-content: center;
-  gap: 20px; /* Reduced gap for more compactness on smaller screens */
+  gap: 40px; /* Increase gap for more spread out items on desktop */
   margin: 20px 0;
   padding: 10px;
   border-top: 1px solid #ccc;
@@ -251,6 +252,29 @@ body {
 
 
 
+
+
+
+
+#map-container {
+  width: 100%; /* Ensures the container takes the full width of the screen */
+  max-width: 800px; /* Max width for larger screens */
+  margin: 0 auto; /* Centers the map horizontally */
+  padding: 10px; /* Optional padding for better spacing */
+}
+
+#google-map {
+  width: 100%; /* Make the iframe take 100% of the container's width */
+  height: 400px; /* Set a fixed height */
+  border: 0; /* Removes the border */
+}
+
+@media (max-width: 768px) {
+  #google-map {
+      height: 300px; /* Adjust height for smaller screens */
+  }
+}
+
 /* Basic button styling */
 .map-button {
   padding: 12px 20px;
@@ -287,10 +311,9 @@ body {
 
 
 
-
-
-
-
+/*                          */
+/*         END MAP          */
+/*                          */
 
 
 
