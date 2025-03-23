@@ -488,6 +488,104 @@ body {
 
 /*                           */
 /*                           */
+/*     BEGIN Q&A SECTION     */
+/*                           */
+
+#qa-section {
+  padding-top: 60px;  /* More space from navbar */
+  padding-bottom: 80px; /* More space before footer */
+}
+
+.qa-section {
+  font-family: 'Quicksand', sans-serif;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Ensures Q & A labels stay aligned */
+.qa-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px; /* Space between label and text */
+  padding-bottom: 15px;
+}
+
+/* Style for "Q:" and "A:" labels */
+.qa-label {
+  font-weight: bold;
+  color: #333;
+  width: 40px; /* Fixed width ensures proper alignment */
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* Question and Answer text */
+.qa-text {
+  color: #555;
+  flex: 1; /* Ensures text takes up remaining space */
+  max-width: 700px;
+}
+
+/* Ensures only the questions are bold */
+.qa-text .question {
+  font-weight: bold;
+}
+
+/* Horizontal line for separation */
+hr {
+  border: 0;
+  height: 1px;
+  background-color: lightgray;
+  margin: 25px 0;
+}
+
+/* Mobile-friendly adjustments */
+@media (max-width: 768px) {
+  .qa-label {
+    width: 30px;
+  }
+
+  .qa-section {
+    padding: 0 25px;
+  }
+
+  hr {
+    margin: 20px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .qa-label {
+    width: 25px;
+  }
+
+  .qa-section {
+    padding: 0 30px;
+  }
+}
+
+/* Email link styling */
+.email-link {
+  font-weight: normal; /* Ensures email is not bold */
+  color: #007bff;
+  text-decoration: none;
+}
+
+.email-link:hover {
+  text-decoration: underline;
+}
+
+
+
+/*                          */
+/*         END Q&A          */
+/*                          */
+
+
+/*                           */
+/*                           */
 /*   BEGIN FOOTER SECTION    */
 /*                           */
 /*                           */
@@ -539,3 +637,10 @@ body {
 /*                          */
 /*        END FOOTER        */
 /*                          */
+
+
+
+
+
+
+
