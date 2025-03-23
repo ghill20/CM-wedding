@@ -105,28 +105,37 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateParallax() {
         const hero = document.querySelector(".hero-section");
         let scrollY = window.scrollY;
-    
+
         // Check if we're on mobile or desktop
         if (hero) {
             if (window.innerWidth <= 600) {
                 // On mobile, simulate parallax by adjusting the background position based on scroll
-                hero.style.backgroundPosition = 'center ' + (scrollY * 0.2) + 'px'; // Adjust the multiplier to control the parallax effect
+                hero.style.backgroundPosition = 'center ' + (scrollY * 0.2) + 'px'; // Adjust multiplier for the effect
             } else {
-                // On desktop, use fixed background attachment
+                // On desktop, set fixed background position (using CSS fixed background attachment)
                 hero.style.backgroundPosition = 'center 25%';
             }
         }
     }
-    
 
+    // Throttle scroll event to improve performance
+    let isScrolling = false;
     window.addEventListener('scroll', () => {
-        handleScrollEffects();
-        updateParallax(); // Call the parallax function during scroll
+        if (!isScrolling) {
+            isScrolling = true;
+            window.requestAnimationFrame(() => {
+                handleScrollEffects();
+                updateParallax(); // Call the parallax function during scroll
+                isScrolling = false;
+            });
+        }
     });
 
-    handleScrollEffects(); // Run on load in case images are already in view
+    // Run on load in case images are already in view
+    handleScrollEffects();
     // Run on load to set the initial background position
     updateParallax();
+
 
     if (guestNameInput) {
         guestNameInput.addEventListener("input", function () {
