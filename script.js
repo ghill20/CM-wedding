@@ -201,8 +201,22 @@ document.addEventListener('DOMContentLoaded', function () {
         // If valid, submit the form (this will send data to Google Sheets)
         this.submit();  // Manually submit the form after validation
         
-        alert("Thank you for your RSVP!");  // Show confirmation alert
         rsvpForm.style.display = 'none'; // Hide the form after submission
     });
+
+    const swiper = new Swiper(".swiper-container", {
+        loop: false,
+        slidesPerView: 1,
+        spaceBetween: 0,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+          renderBullet: function (index, className) {
+            const labels = ["Welcome", "Ceremony", "Reception"];
+            return `<span class="${className}">${labels[index]}</span>`;
+          }
+        },
+      });
+      
     
 });

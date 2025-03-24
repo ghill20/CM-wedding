@@ -348,108 +348,128 @@ body {
 /*                           */
 
 
-/* Center the RSVP form container */
-#rsvp-container {
+/* Ensure RSVP section has a black background */
+#rsvp-section {
+  background-color: black;
+  color: white; /* Ensure text is white */
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 30px; /* Adds space above */
+  flex-direction: row; /* Ensure image and form are side by side */
+  justify-content: flex-start; /* Space out the image and form */
+  align-items: center; /* Vertically align the content */
+  gap: 20px; /* Reduce spacing between elements */
+  width: 100vw; /* Set width to 100% of the viewport */
+  box-sizing: border-box; /* Ensure padding does not add extra width */
 }
 
-/* RSVP Button Styling (for toggling the form) */
+#rsvp-image {
+  flex: 1; /* Allow image to take up available space */
+  max-width: 40%; /* Adjust as needed */
+}
+
+/* Ensure the image is properly sized */
+#rsvp-image img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  max-height: 500px;
+  display: block; /* Remove extra spacing */
+}
+
+/* Style for the RSVP form container */
+#rsvp-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 15%; /* Limit the form width */
+  align-items: center;
+}
+
+/* RSVP Button styles */
 .rsvp-button {
-  display: inline-block;
-  padding: 12px 25px;
-  margin: 20px auto; /* Centers button */
-  font-family: 'Arial', sans-serif; /* Changed to Arial */
+  background-color: white; /* White background */
+  color: black; /* Black text */
+  font-family: 'Quicksand', sans-serif;
   font-size: 1.2rem;
   font-weight: bold;
-  color: white;
-  background-color: black;
   border: none;
   border-radius: 5px;
-  text-decoration: none;
-  text-align: center;
   cursor: pointer;
+  margin-top: -10px; /* Bring the button closer */
   transition: background-color 0.3s ease, transform 0.2s ease;
+  margin: 0; /* Remove any extra margin */
 }
 
+/* Reduce form element margins */
+input, select, form button {
+  margin: 5px 0;
+}
+
+/* Button hover effect */
 .rsvp-button:hover {
-  background-color: #333;
-  transform: scale(1.05);
+  background-color: #333; /* Dark background on hover */
+  transform: scale(1.05); /* Slight zoom effect */
 }
 
-.rsvp-button:focus {
-  outline: none;
-}
-
-/* RSVP Form Styling */
+/* Ensure the RSVP form is hidden initially */
 #rsvp-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px; /* Increased gap between inputs to 20px for larger space between fields */
-  max-width: 320px;
-  width: 100%;
-  margin-top: 20px;
+  display: none; /* Hide the form initially */
 }
 
-#rsvp-form label {
-  font-weight: bold;
-  font-size: 1rem;
-  font-family: 'Arial', sans-serif; /* Changed to Arial */
+/* Show the RSVP form when toggled */
+#rsvp-form.show {
+  display: block; /* Show the form when the class is added */
 }
 
-#rsvp-form input, #rsvp-form select {
+/* Style for form elements */
+input, select {
   padding: 10px;
-  font-size: 1rem;
-  font-family: 'Arial', sans-serif; /* Changed to Arial */
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 100%;  /* Ensure all fields are the same width */
-}
-
-/* Add extra space between the fields */
-#guest-name {
-  margin-bottom: 20px; /* More space below the name input */
-}
-
-#guest-count {
-  margin-bottom: 20px; /* More space below the number of guests dropdown */
-}
-
-#guest-rsvp {
-  margin-bottom: 20px; /* More space below the Yes/No RSVP dropdown */
-}
-
-/* Styling for the "Number of Guests" and "Yes/No RSVP" dropdown */
-#rsvp-form select {
-  background-color: #fff;
-  background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 10 10%22%3E%3Cpath d=%22M0 0 L5 5 L10 0%22 fill=%22none%22 stroke=%22#333%22 stroke-width=%22.8%22/%3E%3C/svg%3E');
-  background-position: right 10px center; /* Custom dropdown arrow */
-  background-repeat: no-repeat;
-  appearance: none; /* Remove default dropdown arrow */
-}
-
-/* Submit Button Styling within the form */
-#rsvp-form button {
+  margin: 10px 0;
   width: 100%;
-  background-color: black;
-  color: white;
-  padding: 12px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
   font-size: 1rem;
-  transition: background-color 0.3s ease;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
-#rsvp-form button:hover {
+/* Style for the submit button */
+form button {
+  background-color: white;
+  color: black;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+form button:hover {
   background-color: #333;
+  color: white;
 }
 
-/* Extra space between the last input and the submit button */
-#rsvp-form button[type="submit"] {
-  margin-top: 20px;
+/* Ensure RSVP form is initially hidden */
+#rsvp-form {
+  display: none; /* Hide the form initially */
+}
+
+/* Show the RSVP form when toggled */
+#rsvp-form.show {
+  display: block; /* Show the form when the class is added */
+}
+
+
+@media (max-width: 768px) { /* Adjust breakpoint as needed */
+  #rsvp-section {
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center align for better UX */
+  }
+
+  #rsvp-image {
+    max-width: 100%; /* Make image full width */
+    order: 2; /* Move image below the form */
+  }
+
+  #rsvp-form-container {
+    order: 1; /* Keep the form above */
+  }
 }
 
 
@@ -737,4 +757,162 @@ hr {
 
 
 
+/*                           */
+/*                           */
+/*   BEGIN SLIDER SECTION    */
+/*                           */
+/*                           */
 
+
+.schedule-container {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+/* Title Styling */
+.schedule-title {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* Swiper container */
+.swiper-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  height: 500px;
+  margin: auto;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Each slide */
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+/* Schedule card layout: row with image on the left */
+.schedule-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  background: white;
+  padding: 20px;
+  box-sizing: border-box;
+  gap: 20px;
+}
+
+/* Image Container */
+.schedule-card img {
+  width: 40%;
+  height: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Text content */
+.event-details {
+  width: 55%;
+  text-align: left;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.event-details h3 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.event-details p {
+  font-size: 1rem;
+  color: #555;
+  margin: 4px 0;
+}
+
+.swiper-pagination {
+  position: absolute;
+  bottom: 15px; /* push a little up from the bottom edge */
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* spacing between dots */
+  z-index: 10; /* ensure it stays above content */
+}
+
+
+.swiper-pagination span {
+  font-size: 1.2rem;
+  color: black;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet {
+  width: 16px;
+  height: 16px;
+  background: black;
+  opacity: 0.5;
+  margin: 0 15px;
+  border-radius: 50%;
+  display: inline-block;
+  transition: opacity 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+  background: black;
+  transform: scale(1.2);
+}
+
+.swiper-wrapper {
+  flex: 1;
+}
+
+/* Responsive fallback for mobile: stack image on top */
+@media (max-width: 768px) {
+  .schedule-card {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .schedule-card img {
+    width: 100%;
+    height: auto;
+  }
+
+  .event-details {
+    text-align: center;
+    align-items: center;
+  }
+
+  .swiper-pagination {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .swiper-pagination span {
+    font-size: 1rem;
+  }
+}
+
+/*                          */
+/*        END SLIDER        */
+/*                          */

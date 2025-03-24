@@ -6,6 +6,9 @@
     <title>Megan & Chaz Wedding</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <!-- Swiper.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 <body>
@@ -27,7 +30,7 @@
     </nav>
 
     <!-- Home Section -->
-    <div id="home" class="content" data-aos="fade-up">
+    <div id="home" class="content" style="display: block;">
         <p>We're so excited to celebrate with you.</p>
 
         <!-- Countdown Timer -->
@@ -53,58 +56,115 @@
             </div>
         </div>
 
-        <!-- RSVP Button and Form -->
-        <div id="rsvp-container">
-            <button id="rsvp-button" class="rsvp-button">RSVP</button>
-
-            <!-- RSVP Form (Initially Hidden) -->
-            <form id="rsvp-form" action="https://script.google.com/macros/s/AKfycbxe3XFos_KPUrw6f270Ue85_nrSyrBoQiQRvhjdIpjTma9yVY_BSjgC6_W6tn45T6S-/exec" method="POST" style="display: none;">
-                <input type="text" name="guest-name" id="guest-name" placeholder="Enter First and Last Names" list="guest-list">
-
-                <!-- Datalist for Name Suggestions -->
-                <datalist id="guest-list">
+        <!-- RSVP Section with black background -->
+        <div id="rsvp-section">
+            <!-- Image on the left side -->
+            <div id="rsvp-image">
+            <img src="pictures/cover_photo.jpeg" alt="RSVP Image">
+            </div>
+        
+            <!-- RSVP Form on the right side -->
+            <div id="rsvp-form-container">
+                <button id="rsvp-button" class="rsvp-button">RSVP</button>
+            
+                <!-- RSVP Form (Initially Hidden) -->
+                <form id="rsvp-form" action="https://script.google.com/macros/s/AKfycbye3_mUpsL4_whzy4a7PFFuOnMibmqehgK9LjPvtkApITa9IobHi01K7tuQT2JSjY5N/exec" method="POST" style="display: none;">
+                    <input type="text" name="guest-name" id="guest-name" placeholder="Start searching your name..." list="guest-list" required>
+            
+                    <!-- Datalist for Name Suggestions -->
+                    <datalist id="guest-list">
                     <!-- Options will be dynamically populated via JavaScript -->
-                </datalist>
-
-                <!-- Number of Guests dropdown, initially hidden -->
-                <select id="guest-count" name="num-resp">
+                    </datalist>
+            
+                    <!-- Number of Guests dropdown, initially hidden -->
+                    <select id="guest-count" name="num-resp" required>
                     <option value="">Select guests</option>
-                </select>
-                <select id="guest-rsvp" name="guest-rsvp">
+                    </select>
+                    <select id="guest-rsvp" name="guest-rsvp" required>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
-                </select>
-                <button type="submit">Submit RSVP</button>
-            </form>                
-        </div>            
-
-        <div id="home-details" class="home-details content"></div>
-            <p>Click below for directions to <strong>The Milestone Barn:</strong></p>
-
-            <!-- Google Maps Button -->
-            <a href="https://www.google.com/maps/dir/?api=1&destination=The+Milestone+Barn,+3801+Mohr+Rd,+Bannister,+MI+48807" 
-            target="_blank">
-                <button class="map-button" id="google-maps-btn">Open in Google Maps</button>
-            </a>
-
-            <!-- Apple Maps Button -->
-            <a href="https://maps.apple.com/?q=The+Milestone+Barn,+3801+Mohr+Rd,+Bannister,+MI+48807" 
-            target="_blank">
-                <button class="map-button" id="apple-maps-btn">Open in Apple Maps</button>
-            </a>
-
-            <div id="map-container">
-                <!-- Google Maps Embed -->
-                <iframe 
-                    id="google-map" 
-                    style="border:0;" 
-                    allowfullscreen="" 
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
-                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDrar-4FfHFgFGSTE34BzCFdATCf9Luqug&q=The+Milestone+Barn">
-                </iframe>
-            </div>            
+                    </select>
+            
+                    <button type="submit">Submit RSVP</button>
+                </form>
+                </div>
+            </div>
         </div>
+
+        <div class="schedule-container">
+            <h2 class="schedule-title">Schedule</h2>
+            
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <!-- Slide 1 -->
+                    <div class="swiper-slide">
+                        <div class="schedule-card">
+                            <img src="pictures/drinks.jpeg" alt="Welcome Drinks">
+                            <div class="event-details">
+                                <h3>Welcome Drinks + Rehearsal Dinner</h3>
+                                <p>Friday, June 13 | 6:00 PM</p>
+                                <p>Join us for a relaxed evening before the big day!</p>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Slide 2 -->
+                    <div class="swiper-slide">
+                        <div class="schedule-card">
+                            <img src="pictures/drinks.jpeg" alt="Ceremony">
+                            <div class="event-details">
+                                <h3>Ceremony</h3>
+                                <p>Saturday, August 2 | 4:00 PM</p>
+                                <p>Exchange vows and celebrate love at our ceremony.</p>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Slide 3 -->
+                    <div class="swiper-slide">
+                        <div class="schedule-card">
+                            <img src="pictures/drinks.jpeg" alt="Reception">
+                            <div class="event-details">
+                                <h3>Reception</h3>
+                                <p>Saturday, August 2 | 6:00 PM</p>
+                                <p>Dinner, drinks, and dancing to celebrate the night away!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination Dots -->
+            <div class="swiper-pagination"></div>
+
+        </div>
+             
+
+        <p>Click below for directions to <strong>The Milestone Barn:</strong></p>
+
+        <!-- Google Maps Button -->
+        <a href="https://www.google.com/maps/dir/?api=1&destination=The+Milestone+Barn,+3801+Mohr+Rd,+Bannister,+MI+48807" 
+        target="_blank">
+            <button class="map-button" id="google-maps-btn">Open in Google Maps</button>
+        </a>
+
+        <!-- Apple Maps Button -->
+        <a href="https://maps.apple.com/?q=The+Milestone+Barn,+3801+Mohr+Rd,+Bannister,+MI+48807" 
+        target="_blank">
+            <button class="map-button" id="apple-maps-btn">Open in Apple Maps</button>
+        </a>
+
+        <div id="map-container">
+            <!-- Google Maps Embed -->
+            <iframe 
+                id="google-map" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDrar-4FfHFgFGSTE34BzCFdATCf9Luqug&q=The+Milestone+Barn">
+            </iframe>
+        </div>            
     </div>
     
     <!-- Photos Section -->
@@ -225,6 +285,8 @@
         <img src="pictures/CM_white.png" alt="Wedding Logo" class="footer-logo">
     </footer>
 
+    <!-- Swiper.js JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
