@@ -204,19 +204,23 @@ document.addEventListener('DOMContentLoaded', function () {
         rsvpForm.style.display = 'none'; // Hide the form after submission
     });
 
-    const swiper = new Swiper(".swiper-container", {
-        loop: false,
+    new Swiper('.swiper-container', {
         slidesPerView: 1,
-        spaceBetween: 0,
+        loop: false,
         pagination: {
-          el: ".swiper-pagination",
+          el: '.swiper-pagination',
           clickable: true,
           renderBullet: function (index, className) {
-            const labels = ["Welcome", "Ceremony", "Reception"];
-            return `<span class="${className}">${labels[index]}</span>`;
-          }
+            const labels = ['Welcome Drinks', 'Ceremony', 'Reception'];
+            return `
+              <div class="custom-bullet-wrapper">
+                <span class="${className}"></span>
+                <p class="custom-label">${labels[index]}</p>
+              </div>`;
+          },
         },
       });
+      
       
     
 });

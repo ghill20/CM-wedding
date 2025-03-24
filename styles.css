@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'The Seasons';
+  font-family: 'Cormorant_Garamond';
   src: url('fonts/Cormorant_Garamond/CormorantGaramond-Regular.woff2') format('woff2'),
        url('fonts/Cormorant_Garamond/CormorantGaramond-Regular.woff') format('woff');
   font-weight: 100;
@@ -764,19 +764,21 @@ hr {
 /*                           */
 
 
+/*
+  SLIDER SECTION UPDATE: CUSTOM BULLETS & LABELS
+*/
+
 .schedule-container {
   text-align: center;
   padding: 50px 20px;
 }
 
-/* Title Styling */
 .schedule-title {
   font-family: 'Quicksand', sans-serif;
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 20px;
 }
 
-/* Swiper container */
 .swiper-container {
   display: flex;
   flex-direction: column;
@@ -791,7 +793,6 @@ hr {
   overflow: hidden;
 }
 
-/* Each slide */
 .swiper-slide {
   display: flex;
   align-items: center;
@@ -799,7 +800,6 @@ hr {
   height: 100%;
 }
 
-/* Schedule card layout: row with image on the left */
 .schedule-card {
   display: flex;
   flex-direction: row;
@@ -813,16 +813,15 @@ hr {
   gap: 20px;
 }
 
-/* Image Container */
 .schedule-card img {
   width: 40%;
-  height: 100%;
-  max-height: 400px;
+  height: auto;
+  max-height: 360px;
   object-fit: cover;
   border-radius: 8px;
+  align-self: flex-start;
 }
 
-/* Text content */
 .event-details {
   width: 55%;
   text-align: left;
@@ -844,25 +843,25 @@ hr {
   margin: 4px 0;
 }
 
+/* Custom Pagination Wrapper */
 .swiper-pagination {
   position: absolute;
-  bottom: 15px; /* push a little up from the bottom edge */
+  bottom: 0;
   left: 0;
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 20px; /* spacing between dots */
-  z-index: 10; /* ensure it stays above content */
+  align-items: flex-end;
+  gap: 40px;
+  padding-bottom: 8px;
+  box-sizing: border-box;
+  z-index: 10;
 }
 
-
-.swiper-pagination span {
-  font-size: 1.2rem;
-  color: black;
-  cursor: pointer;
-  opacity: 0.5;
-  transition: all 0.3s ease;
+.custom-bullet-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .swiper-pagination-bullet {
@@ -870,10 +869,10 @@ hr {
   height: 16px;
   background: black;
   opacity: 0.5;
-  margin: 0 15px;
+  margin: 0;
   border-radius: 50%;
-  display: inline-block;
   transition: opacity 0.3s ease;
+  display: block;
 }
 
 .swiper-pagination-bullet-active {
@@ -882,11 +881,17 @@ hr {
   transform: scale(1.2);
 }
 
+.custom-label {
+  font-size: 0.9rem;
+  color: black;
+  margin-top: 6px;
+  font-family: 'Quicksand', sans-serif;
+}
+
 .swiper-wrapper {
   flex: 1;
 }
 
-/* Responsive fallback for mobile: stack image on top */
 @media (max-width: 768px) {
   .schedule-card {
     flex-direction: column;
@@ -908,8 +913,8 @@ hr {
     gap: 10px;
   }
 
-  .swiper-pagination span {
-    font-size: 1rem;
+  .custom-label {
+    font-size: 0.8rem;
   }
 }
 
