@@ -460,15 +460,13 @@ form button:hover {
   #rsvp-section {
     flex-direction: column; /* Stack items vertically */
     align-items: center; /* Center align for better UX */
-    padding-top: 40px;
-    padding-bottom: 60px;
-    padding: 20px;
+    padding: 40px 20px;
     gap: 30px;
   }
 
   #rsvp-image {
     max-width: 100%; /* Make image full width */
-    order: 2; /* Move image below the form */
+    order: 1; /* Move image below the form */
   }
 
   #rsvp-form-container {
@@ -477,6 +475,7 @@ form button:hover {
     padding: 20px;
     align-items: stretch;
     text-align: center;
+    order: 2;
   }
 }
 
@@ -567,6 +566,11 @@ form button:hover {
     grid-template-columns: repeat(2, 1fr);
     max-width: 100%; /* Allow it to use full screen space on mobile */
     padding: 10px;
+  }
+
+    /* Vertical images take up 1 column each */
+  .photo-gallery img.vertical {
+    grid-column: span 1;
   }
 
   .photo-gallery img.horizontal {
@@ -901,32 +905,41 @@ hr {
 
 @media (max-width: 768px) {
   .schedule-container {
-    padding: 30px 10px;
+    padding: 40px 15px;
   }
 
   .schedule-title {
     font-size: 1.8rem;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
   }
 
   .swiper-container {
-    height: auto; /* Let content size determine height */
+    height: 700px; /* Let content size determine height */
     max-height: none;
     border: none;
     box-shadow: none;
   }
 
+  .swiper-wrapper {
+    height: 100%;
+  }
+
+  .swiper-slide {
+    height: 100%;
+  }
+
   .schedule-card {
     flex-direction: column;
-    padding: 15px;
-    gap: 15px;
-    height: auto;
+    padding: 20px;
+    gap: 20px;
+    height: 100%;
+    box-sizing: border-box;
   }
 
   .schedule-card img {
     width: 100%;
     height: auto;
-    max-height: 250px;
+    max-height: 280px;
     object-fit: cover;
     border-radius: 8px;
   }
@@ -935,36 +948,37 @@ hr {
     width: 100%;
     text-align: center;
     align-items: center;
+    justify-content: center;
   }
 
   .event-details h3 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     margin-bottom: 10px;
   }
 
   .event-details p {
-    font-size: 0.95rem;
-    line-height: 1.4;
+    font-size: 1rem;
+    line-height: 1.5;
     margin: 4px 0;
   }
 
   .swiper-pagination {
     flex-direction: row; /* Ensure horizontal layout */
-    gap: 20px;
+    gap: 15px;
     position: relative;
     bottom: auto;
     margin-top: 20px;
   }
 
   .custom-label {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     margin-top: 4px;
     text-align: center;
   }
 
   .swiper-pagination-bullet {
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
   }
 }
 
