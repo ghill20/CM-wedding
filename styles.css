@@ -460,6 +460,10 @@ form button:hover {
   #rsvp-section {
     flex-direction: column; /* Stack items vertically */
     align-items: center; /* Center align for better UX */
+    padding-top: 40px;
+    padding-bottom: 60px;
+    padding: 20px;
+    gap: 30px;
   }
 
   #rsvp-image {
@@ -468,7 +472,11 @@ form button:hover {
   }
 
   #rsvp-form-container {
-    order: 1; /* Keep the form above */
+    max-width: 90%;
+    width: 100%;
+    padding: 20px;
+    align-items: stretch;
+    text-align: center;
   }
 }
 
@@ -525,48 +533,47 @@ form button:hover {
 /*                          */
 
 
-/* Container for the photo gallery */
+/* Center and contain the photo gallery */
 .photo-gallery {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Default to 3 columns */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 10px;
-  grid-template-rows: auto; /* Automatically adjusts row height based on content */
+  max-width: 900px;  /* You can adjust this max width as needed */
+  margin: 0 auto;    /* Center the gallery */
+  padding: 20px;
 }
 
-/* Styling for the images in the photo gallery */
+/* All images fill their container */
 .photo-gallery img {
   width: 100%;
-  height: auto; /* Maintain aspect ratio */
+  height: auto;
+  object-fit: cover;
+  border-radius: 5px;
 }
 
-/* Row 1: 3 images */
-.photo-1, .photo-2, .photo-3 {
-  grid-column: span 1;
+/* Vertical images take up 1 column each */
+.photo-gallery img.vertical {
+  grid-column: span 2;
 }
 
-/* Row 2: 3 images */
-.photo-4, .photo-5, .photo-6 {
-  grid-column: span 1;
+/* Horizontal images span full width */
+.photo-gallery img.horizontal {
+  grid-column: 1 / -1;
 }
 
-/* Row 3: 3 images */
-.photo-7, .photo-8, .photo-9 {
-  grid-column: span 1;
-}
-
-/* For tablets: Adjust layout to 2 per row */
-@media (max-width: 1024px) {
-  .photo-gallery {
-    grid-template-columns: repeat(2, 1fr); /* 2 per row on tablets */
-  }
-}
-
-/* For mobile: Adjust layout to 2 per row */
+/* On small screens, still keep 2 columns max */
 @media (max-width: 768px) {
   .photo-gallery {
-    grid-template-columns: repeat(2, 1fr); /* 2 per row on mobile */
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 100%; /* Allow it to use full screen space on mobile */
+    padding: 10px;
+  }
+
+  .photo-gallery img.horizontal {
+    grid-column: 1 / -1; /* Make sure horizontal images span full row */
   }
 }
+
 
 
 /*                           */
@@ -893,30 +900,74 @@ hr {
 }
 
 @media (max-width: 768px) {
+  .schedule-container {
+    padding: 30px 10px;
+  }
+
+  .schedule-title {
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+  }
+
+  .swiper-container {
+    height: auto; /* Let content size determine height */
+    max-height: none;
+    border: none;
+    box-shadow: none;
+  }
+
   .schedule-card {
     flex-direction: column;
     padding: 15px;
+    gap: 15px;
+    height: auto;
   }
 
   .schedule-card img {
     width: 100%;
     height: auto;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
   }
 
   .event-details {
+    width: 100%;
     text-align: center;
     align-items: center;
   }
 
+  .event-details h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .event-details p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin: 4px 0;
+  }
+
   .swiper-pagination {
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: row; /* Ensure horizontal layout */
+    gap: 20px;
+    position: relative;
+    bottom: auto;
+    margin-top: 20px;
   }
 
   .custom-label {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
+    margin-top: 4px;
+    text-align: center;
+  }
+
+  .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
   }
 }
+
 
 /*                          */
 /*        END SLIDER        */
