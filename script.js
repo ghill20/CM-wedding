@@ -7,9 +7,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const guestNameInput = document.getElementById("guest-name");
     const numGuestsDropdown = document.getElementById("guest-count");
     const rsvpDropdown = document.getElementById("rsvp-dropdown"); // Yes/No RSVP dropdown
-    const autocompleteList = document.createElement("ul"); // Dropdown for suggestions
-    autocompleteList.classList.add("autocomplete-list");
-    guestNameInput.parentNode.appendChild(autocompleteList);
+    const autocompleteList = document.getElementById("autocomplete-list");
+
 
     // Load guest list
     let guestList = [];
@@ -140,8 +139,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (guestNameInput) {
         guestNameInput.addEventListener("input", function () {
-            const enteredName = this.value.toLowerCase().trim().replace(/,/g, '');  // Remove commas
-            console.log("Entered Name:", enteredName);  // Log entered name
+            const enteredName = this.value.toLowerCase().trim();
+            autocompleteList.innerHTML = '';
     
             if (enteredName === "") {
                 numGuestsDropdown.innerHTML = "<option value=''>Select guests</option>";
@@ -149,25 +148,48 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
     
-            // Ensure the guest list is available and all guest objects have a 'guest-name' property
-            const matchedGuests = guestList.filter(guest => guest["guest-name"].toLowerCase().includes(enteredName));  // Check if any name contains the entered letters
-            console.log("Matched Guests:", matchedGuests);  // Log matched guests
+            const matchedGuests = [];
+            const seenNames = new Set();
+            
+            guestList.forEach(guest => {
+              const guestName = guest["guest-name"];
+              const lowerName = guestName.toLowerCase();
+              
+              if (lowerName.includes(enteredName) && !seenNames.has(lowerName)) {
+                matchedGuests.push(guest);
+                seenNames.add(lowerName);
+              }
+            });
+            
+            matchedGuests.splice(5); // Limit to 5 suggestions
+            
     
             if (matchedGuests.length > 0) {
-                numGuestsDropdown.innerHTML = "<option value=''>Select guests</option>";  // Reset options
-    
-                // Populate dropdown with matching guest names
-                matchedGuests.forEach(matchedGuest => {
-                    let option = document.createElement("option");
-                    option.value = matchedGuest["num-resp"];
-                    option.textContent = matchedGuest["num-resp"];
-                    numGuestsDropdown.appendChild(option);
+                matchedGuests.forEach(guest => {
+                    const li = document.createElement("li");
+                    li.textContent = guest["guest-name"];
+        
+                    li.addEventListener("click", function () {
+                        // Fill in the input
+                        guestNameInput.value = guest["guest-name"];
+                        autocompleteList.innerHTML = ''; // Hide suggestions
+        
+                        // Populate guest count dropdown
+                        numGuestsDropdown.innerHTML = "<option value=''>Select guests</option>";
+                        const maxGuests = parseInt(guest["num-resp"]);
+        
+                        for (let i = 1; i <= maxGuests; i++) {
+                            let option = document.createElement("option");
+                            option.value = i;
+                            option.textContent = i;
+                            numGuestsDropdown.appendChild(option);
+                        }
+        
+                        numGuestsDropdown.disabled = false;
+                    });
+        
+                    autocompleteList.appendChild(li);
                 });
-    
-                numGuestsDropdown.disabled = false;  // Enable the dropdown
-            } else {
-                numGuestsDropdown.innerHTML = "<option value=''>No guests found</option>";  // Default option when no matches
-                numGuestsDropdown.disabled = true;  // Disable the dropdown
             }
         });
     }
@@ -204,9 +226,15 @@ document.addEventListener('DOMContentLoaded', function () {
         rsvpForm.style.display = 'none'; // Hide the form after submission
     });
 
-    new Swiper('.swiper-container', {
+    const swiper = new Swiper('.swiper-container', {
         slidesPerView: 1,
-        loop: false,
+        loop: true, // Set to true if you want autoplay to loop
+      
+        autoplay: {
+          delay: 7000,             // 3 seconds between slides
+          disableOnInteraction: false, // Keeps autoplay going even after user clicks
+        },
+      
         pagination: {
           el: '.swiper-pagination',
           clickable: true,
@@ -217,10 +245,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 <span class="${className}"></span>
                 <p class="custom-label">${labels[index]}</p>
               </div>`;
-          },
-        },
+          }
+        }
       });
       
       
-    
 });

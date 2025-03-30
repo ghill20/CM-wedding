@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <!-- Swiper.js CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
-
+    <!-- Swiper.js JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 <body>
@@ -56,40 +57,84 @@
             </div>
         </div>
 
+        <!-- RSVP Form on the right side -->
+        <div id="rsvp-form-container">
+            <button id="rsvp-button" class="rsvp-button">RSVP</button>
+        
+            <!-- RSVP Form (Initially Hidden) -->
+            <form id="rsvp-form" action="https://script.google.com/macros/s/AKfycbye3_mUpsL4_whzy4a7PFFuOnMibmqehgK9LjPvtkApITa9IobHi01K7tuQT2JSjY5N/exec" autocomplete="off" method="POST" style="display: none;">
+                
+                <div class="autocomplete-wrapper" style="position: relative;">
+                    <label for="guest-name" class="restictions">
+                        Start searching your name and select your party:
+                    </label>
+                    <input 
+                        type="text" 
+                        name="guest-name" 
+                        id="guest-name" 
+                        placeholder="Start searching..." 
+                        autocomplete="off" 
+                        autocorrect="off" 
+                        spellcheck="false" 
+                        required
+                    >
+                    <ul id="autocomplete-list" class="autocomplete-list"></ul>
+                </div>
+                  
+        
+                <!-- Number of Guests dropdown, initially hidden -->
+                <label for="guest-count" class="restictions">
+                    Select number of guests:
+                </label>
+                <select id="guest-count" name="num-resp" required>
+                <option value="">Select guests</option>
+                </select>
+
+                <label for="guest-name" class="restictions">
+                    RSVP Response:
+                </label>
+                <select id="guest-rsvp" name="guest-rsvp" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+                </select>
+
+                <label for="restrictions" class="restictions">
+                    Any food allergies or dietary restrictions?
+                </label>
+                <input name="restrictions" id="restrictions" placeholder="N/A">
+        
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
         <!-- RSVP Section with black background -->
         <div id="rsvp-section">
-            <!-- Image on the left side -->
-            <div id="rsvp-image">
-            <img src="pictures/cover_photo.jpeg" alt="RSVP Image">
-            </div>
-        
-            <!-- RSVP Form on the right side -->
-            <div id="rsvp-form-container">
-                <button id="rsvp-button" class="rsvp-button">RSVP</button>
-            
-                <!-- RSVP Form (Initially Hidden) -->
-                <form id="rsvp-form" action="https://script.google.com/macros/s/AKfycbye3_mUpsL4_whzy4a7PFFuOnMibmqehgK9LjPvtkApITa9IobHi01K7tuQT2JSjY5N/exec" method="POST" style="display: none;">
-                    <input type="text" name="guest-name" id="guest-name" placeholder="Start searching your name..." list="guest-list" required>
-            
-                    <!-- Datalist for Name Suggestions -->
-                    <datalist id="guest-list">
-                    <!-- Options will be dynamically populated via JavaScript -->
-                    </datalist>
-            
-                    <!-- Number of Guests dropdown, initially hidden -->
-                    <select id="guest-count" name="num-resp" required>
-                    <option value="">Select guests</option>
-                    </select>
-                    <select id="guest-rsvp" name="guest-rsvp" required>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                    </select>
-            
-                    <button type="submit">Submit RSVP</button>
-                </form>
+            <div id="rsvp-left">
+                <div id="rsvp-image-and-note">
+                    <div id="rsvp-image">
+                        <img src="pictures/cover_photo.jpeg" alt="RSVP Image">
+                    </div>
+
+                    <div id="note-title">
+                        <p>
+                            A Note From Us
+                        </p>
+                    </div>
+
+                    <div id="rsvp-note">
+                        <p>
+                            We're so excited to celebrate this special chapter of our lives with the people we love most.
+                            Thank you for your support, your laughter, and for being part of our story.
+                            We can't wait to see you on our big day!
+                        </p>
+                        <p class="note-signoff">
+                            With love,<br>
+                            Chaz & Megan
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
-       
 
         <div class="schedule-container">
             <h2 class="schedule-title">Schedule</h2>
@@ -187,7 +232,7 @@
             <img src="pictures/CM_engagement - 13 of 42.jpeg" class="vertical">
             <img src="pictures/CM_engagement - 20 of 42.jpeg" class="horizontal">
             <img src="pictures/CM_engagement - 14 of 42.jpeg" class="vertical">
-            <img src="pictures/CM_engagement - 15 of 42.jpeg" class="vertical">
+            <img src="pictures/CM_engagement - 30 of 42.jpeg" class="vertical">
             <img src="pictures/CM_engagement - 16 of 42.jpeg" class="horizontal">
             <img src="pictures/CM_engagement - 17 of 42.jpeg" class="vertical">
             <img src="pictures/CM_engagement - 18 of 42.jpeg" class="vertical">
@@ -201,7 +246,6 @@
             <img src="pictures/CM_engagement - 27 of 42.jpeg" class="vertical">
             <img src="pictures/CM_engagement - 28 of 42.jpeg" class="horizontal">
             <img src="pictures/CM_engagement - 29 of 42.jpeg" class="horizontal">
-            <img src="pictures/CM_engagement - 30 of 42.jpeg" class="vertical">
             <img src="pictures/CM_engagement - 31 of 42.jpeg" class="horizontal">
             <img src="pictures/CM_engagement - 34 of 42.jpeg" class="vertical">
             <img src="pictures/CM_engagement - 35 of 42.jpeg" class="vertical">
@@ -317,8 +361,6 @@
         <img src="pictures/CM_white.png" alt="Wedding Logo" class="footer-logo">
     </footer>
 
-    <!-- Swiper.js JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

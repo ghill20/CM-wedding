@@ -22,6 +22,11 @@
   font-style: normal;
 }
 
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 /* General Styles */
 body {
   font-family: 'Quicksand', sans-serif;
@@ -169,7 +174,7 @@ body {
 
 
 .map-button {
-  background-color: #4CAF50; /* Green */
+  background-color: black;
   color: white;
   padding: 10px 20px;
   text-align: center;
@@ -179,10 +184,13 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin: 5px 8px; /* Adds space between buttons */
+  white-space: nowrap;        /* Prevents wrapping inside the button */
+  max-width: 100%;            /* Ensures it doesn't break layout */
 }
 
 .map-button:hover {
-  background-color: #45a049;
+  background-color: rgb(63, 63, 63);
 }
 
 
@@ -278,7 +286,7 @@ body {
 /* Basic button styling */
 .map-button {
   padding: 12px 20px;
-  background-color: #4CAF50;  /* Green background */
+  background-color: black;  /* Green background */
   color: white;
   border: none;
   border-radius: 8px; /* Rounded corners */
@@ -291,14 +299,14 @@ body {
 
 /* Button hover effect */
 .map-button:hover {
-  background-color: #45a049;  /* Slightly darker green */
+  background-color: rgb(63, 63, 63);  /* Slightly darker green */
   transform: translateY(-2px);  /* Button lifts up slightly */
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);  /* Stronger shadow on hover */
 }
 
 /* Active button effect */
 .map-button:active {
-  background-color: #388e3c;  /* Darker green when button is pressed */
+  background-color: rgb(63, 63, 63);  /* Darker green when button is pressed */
   transform: translateY(0);  /* Button returns to its normal position */
   box-shadow: none;  /* Remove shadow when pressed */
 }
@@ -306,7 +314,7 @@ body {
 /* Button focus styling (for accessibility) */
 .map-button:focus {
   outline: none;
-  border: 2px solid #3f51b5;  /* Add blue border on focus */
+  border: 2px solid #000000;  /* Add blue border on focus */
 }
 
 
@@ -359,6 +367,22 @@ body {
   gap: 20px; /* Reduce spacing between elements */
   width: 100vw; /* Set width to 100% of the viewport */
   box-sizing: border-box; /* Ensure padding does not add extra width */
+  max-width: auto;
+  margin: 0 auto;
+}
+
+/* Left half (image + note) */
+#rsvp-left {
+  flex: 1;
+  max-width: 55%;
+  min-width: 300px;
+}
+
+/* Arrange image + note side by side */
+#rsvp-image-and-note {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
 }
 
 #rsvp-image {
@@ -372,37 +396,83 @@ body {
   height: auto;
   object-fit: cover;
   max-height: 500px;
-  display: block; /* Remove extra spacing */
+  border-radius: 8px;
 }
 
 /* Style for the RSVP form container */
 #rsvp-form-container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  max-width: 15%; /* Limit the form width */
+  gap: 15px;
+  justify-content: center;
+  margin: 40px auto;
+  height: auto;
+  width: 100%;
+  max-width: 600px;
   align-items: center;
+}
+
+/* Note styles */
+#rsvp-note {
+  flex: 1;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.note-signoff {
+  margin-top: 15px;
+  font-style: italic;
+  font-size: 1.05rem;
+  font-weight: 500;
 }
 
 /* RSVP Button styles */
 .rsvp-button {
-  background-color: white; /* White background */
-  color: black; /* Black text */
+  background-color: black;
+  color: white;
   font-family: 'Quicksand', sans-serif;
   font-size: 1.2rem;
   font-weight: bold;
-  border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: -10px; /* Bring the button closer */
+  padding: 12px 24px;
+  margin: 0 auto;
+  display: inline-block;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  margin: 0; /* Remove any extra margin */
 }
 
-/* Reduce form element margins */
-input, select, form button {
-  margin: 5px 0;
+form input,
+form select,
+form textarea {
+  width: 100%;                /* Make them all the same width */
+  max-width: 400px;           /* Limit how wide they grow */
+  height: 38px;               /* Make height consistent for inputs/selects */
+  padding: 8px 10px;          /* Inner spacing */
+  font-size: 1rem;
+  font-family: 'Quicksand', sans-serif;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 2px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  outline: none;
+  appearance: none;
 }
+
+form label {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.95rem;
+  margin: 6px 0 4px;
+  display: block;
+  max-width: 400px;
+  font-weight: bold;
+  text-align: left;
+}
+
 
 /* Button hover effect */
 .rsvp-button:hover {
@@ -417,27 +487,19 @@ input, select, form button {
 
 /* Show the RSVP form when toggled */
 #rsvp-form.show {
-  display: block; /* Show the form when the class is added */
-}
-
-/* Style for form elements */
-input, select {
-  padding: 10px;
-  margin: 10px 0;
-  width: 100%;
-  font-size: 1rem;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  display: block;
 }
 
 /* Style for the submit button */
 form button {
-  background-color: white;
-  color: black;
+  background-color: black;
+  color: white;
   padding: 12px 20px;
   border: none;
+  margin-top: 20px;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 1rem;
 }
 
 form button:hover {
@@ -455,30 +517,66 @@ form button:hover {
   display: block; /* Show the form when the class is added */
 }
 
+.restrictions {
+  display: block;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1rem;
+  margin: 10px 0 5px;
+  color: black; /* or white if you're in a dark section */
+}
 
-@media (max-width: 768px) { /* Adjust breakpoint as needed */
+
+
+@media (max-width: 768px) {
   #rsvp-section {
-    flex-direction: column; /* Stack items vertically */
-    align-items: center; /* Center align for better UX */
+    flex-direction: column;
+    align-items: center;
     padding: 40px 20px;
     gap: 30px;
   }
 
   #rsvp-image {
-    max-width: 100%; /* Make image full width */
-    order: 1; /* Move image below the form */
+    max-width: 100%;
+    order: 1;
   }
 
   #rsvp-form-container {
-    max-width: 90%;
-    width: 100%;
-    padding: 20px;
-    align-items: stretch;
-    text-align: center;
     order: 2;
+    max-width: 100%;
+    width: 100%;
+    padding: 0 20px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .rsvp-button {
+    display: inline-block;
+    width: auto;
+    padding: 12px 24px;
+    margin-top: 20px;
+    font-size: 1.1rem;
+  }
+
+  #rsvp-note {
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 0.95rem;
+  }
+
+  .note-signoff {
+    font-size: 1.2rem;
+  }
+
+  #rsvp-image-and-note {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #rsvp-left {
+    max-width: 100%;
+    width: 100%;
   }
 }
-
 
 
 /*                          */
@@ -740,30 +838,33 @@ hr {
 
 
 
-
 .autocomplete-list {
   position: absolute;
   top: 100%;
   left: 0;
-  width: 100%;  /* Ensure the list takes the full width of the input field */
-  max-width: 300px;  /* Limit the width of the list */
-  background-color: white;
+  right: 0;
+  background: white;
   border: 1px solid #ccc;
-  max-height: 150px;  /* Limit the height */
-  overflow-y: auto;  /* Enable scrolling if there are many suggestions */
-  z-index: 9999;  /* Ensure it's above other content */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  z-index: 1000;
+  list-style: none;
+  padding: 0;
+  margin: 4px 0 0 0;
+  max-height: 200px;
+  overflow-y: auto;
 }
 
 .autocomplete-list li {
-  padding: 8px;
+  padding: 10px 14px;
   cursor: pointer;
+  font-family: 'Quicksand', sans-serif;
+  border-bottom: 1px solid #e0e0e0; /* 👈 Adds the line between items */
 }
 
-.autocomplete-list li:hover {
-  background-color: #f0f0f0;  /* Highlight on hover */
+/* Optional: remove the line from the last item */
+.autocomplete-list li:last-child {
+  border-bottom: none;
 }
-
 
 
 
@@ -774,10 +875,6 @@ hr {
 /*                           */
 /*                           */
 
-
-/*
-  SLIDER SECTION UPDATE: CUSTOM BULLETS & LABELS
-*/
 
 .schedule-container {
   text-align: center;
@@ -914,7 +1011,7 @@ hr {
   }
 
   .swiper-container {
-    height: 700px; /* Let content size determine height */
+    height: 600px; /* Let content size determine height */
     max-height: none;
     border: none;
     box-shadow: none;
