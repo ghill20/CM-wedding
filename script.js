@@ -239,7 +239,7 @@ document.addEventListener('DOMContentLoaded', function () {
           el: '.swiper-pagination',
           clickable: true,
           renderBullet: function (index, className) {
-            const labels = ['Welcome Drinks', 'Ceremony', 'Reception'];
+            const labels = ['Schedule', 'Menu', 'Rece'];
             return `
               <div class="custom-bullet-wrapper">
                 <span class="${className}"></span>

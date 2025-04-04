@@ -23,6 +23,8 @@
 }
 
 html, body {
+  margin: 0;
+  padding: 0;
   overflow-x: hidden;
   width: 100%;
 }
@@ -361,14 +363,12 @@ body {
   background-color: black;
   color: white; /* Ensure text is white */
   display: flex;
-  flex-direction: row; /* Ensure image and form are side by side */
-  justify-content: flex-start; /* Space out the image and form */
+  justify-content: center; /* Space out the image and form */
   align-items: center; /* Vertically align the content */
-  gap: 20px; /* Reduce spacing between elements */
-  width: 100vw; /* Set width to 100% of the viewport */
+  padding: 80px 40px;
+  gap: 40px; /* Reduce spacing between elements */
+  width: 100%; /* Set width to 100% of the viewport */
   box-sizing: border-box; /* Ensure padding does not add extra width */
-  max-width: auto;
-  margin: 0 auto;
 }
 
 /* Left half (image + note) */
@@ -378,24 +378,32 @@ body {
   min-width: 300px;
 }
 
-/* Arrange image + note side by side */
 #rsvp-image-and-note {
   display: flex;
   flex-direction: row;
-  gap: 20px;
+  gap: 40px;
+  align-items: center;
+  max-width: 1200px;        /* Keeps layout neat on large screens */
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;          /* Pushes in content from edges */
+  box-sizing: border-box;
 }
 
 #rsvp-image {
-  flex: 1; /* Allow image to take up available space */
-  max-width: 40%; /* Adjust as needed */
+  flex: 1;
+  padding-left: 20px;       /* Adds spacing from left edge */
+  padding-right: 20px; 
+  box-sizing: border-box;
 }
 
 /* Ensure the image is properly sized */
 #rsvp-image img {
-  max-width: 100%;
+  width: 100%;
   height: auto;
+  display: block;
+  max-height: none;
   object-fit: cover;
-  max-height: 500px;
   border-radius: 8px;
 }
 
@@ -415,9 +423,11 @@ body {
 /* Note styles */
 #rsvp-note {
   flex: 1;
+  max-width: 50%;
   font-family: 'Quicksand', sans-serif;
   font-size: 1rem;
   line-height: 1.6;
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -529,8 +539,10 @@ form button:hover {
 
 @media (max-width: 768px) {
   #rsvp-section {
+    display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding: 40px 20px;
     gap: 30px;
   }
@@ -576,6 +588,14 @@ form button:hover {
     max-width: 100%;
     width: 100%;
   }
+
+  form input,
+  form select,
+  form textarea {
+    width: 100%;
+    max-width: 100%;
+  }
+
 }
 
 
