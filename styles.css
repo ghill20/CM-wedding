@@ -149,6 +149,7 @@ body {
 
 .subtitle {
   font-family: 'Quicksand', sans-serif;
+  margin-top: 20px;
   font-weight: 100;
   font-size: clamp(0.8rem, 2vw, 1rem);
   letter-spacing: clamp(1px, 1vw, 3px);
@@ -299,7 +300,7 @@ body {
   width: 100%; /* Ensures the container takes the full width of the screen */
   max-width: 800px; /* Max width for larger screens */
   margin: 0 auto; /* Centers the map horizontally */
-  padding: 10px; /* Optional padding for better spacing */
+  padding: 50px; /* Optional padding for better spacing */
 }
 
 #google-map {
@@ -575,7 +576,6 @@ form button:hover {
 @media (max-width: 768px) {
   #rsvp-section {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 40px 20px;
@@ -606,7 +606,9 @@ form button:hover {
 
   #rsvp-note {
     text-align: center;
-    padding: 10px 20px;
+    max-width: 600px;
+    padding: 0 30px;
+    margin: 0 auto;
     font-size: 0.95rem;
   }
 
@@ -1191,5 +1193,16 @@ hr {
 
 .registry-buttons .btn:hover {
   background-color: black;
+}
+
+@media (max-width: 768px) {
+
+  .registry-note {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
 }
 
