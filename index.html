@@ -6,6 +6,7 @@
     <title>Megan & Chaz Wedding</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Herr+Von+Muellerhoff&display=swap" rel="stylesheet">
     <!-- Swiper.js CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
     <!-- Swiper.js JavaScript -->
@@ -27,7 +28,7 @@
         <a href="#photos" class="tab" data-target="photos">Photos</a>
         <a href="#wedding-party" class="tab" data-target="wedding-party">Wedding Party</a>
         <a href="#qa-section" class="tab" data-target="qa-section">Q + A</a>
-        <a href="#registry" class="tab" data-target="registry">Registry</a>
+        <a href="#registry" class="tab" data-target="registry-section">Registry</a>
     </nav>
 
     <!-- Home Section -->
@@ -108,28 +109,29 @@
         </div>
 
         <!-- RSVP Section with black background -->
-        <div id="rsvp-section">
-            <div id="rsvp-left">
-                <div id="rsvp-image-and-note">
-                    <div id="rsvp-image">
-                        <img src="pictures/cover_photo.jpeg" alt="RSVP Image">
-                    </div>
+        <section id="rsvp-section">
+            <div id="rsvp-image-and-note">
+                <div id="rsvp-image">
+                    <img src="pictures/CM_engagement - 37 of 42.jpeg" alt="RSVP Image">
+                </div>
 
-                    <div id="rsvp-note">
-                        <p class="note-title"> A Note From Us</p>
-                        <p>
-                            We're so excited to celebrate this special chapter of our lives with the people we love most.
-                            Thank you for your support, your laughter, and for being part of our story.
-                            We can't wait to see you on our big day!
-                        </p>
-                        <p class="note-signoff">
-                            With love,<br>
-                            Chaz & Megan
-                        </p>
-                    </div>
+                <div id="rsvp-note">
+                    <p class="note-title"> A Note From Us</p>
+                    <p class="note-body">
+                        We’re so excited to celebrate this special chapter of our lives with the people we love most. 
+                        Your support, your laughter, and your presence have meant so much to us throughout our journey. 
+                    </p>
+                    <p class="note-body">
+                        As we step into this new beginning together, we feel incredibly grateful to be surrounded by such amazing friends and family. 
+                        Sharing this day with you makes it all the more meaningful, and we truly can’t wait to celebrate together.
+                    </p>
+                    <p class="note-signoff">
+                        With love,<br>
+                        Chaz & Megan
+                    </p>
                 </div>
             </div>
-        </div>
+        </section>
 
         <div class="schedule-container">
             <div class="swiper-container">
@@ -150,7 +152,7 @@
                     <!-- Slide 2 -->
                     <div class="swiper-slide">
                         <div class="schedule-card">
-                            <div class="event-details">
+                            <div class="menu-card">
                                 <h3>Menu</h3>
                                 <p>Chicken Alfredo</p>
                                 <p>Caesar Salad</p>
@@ -218,13 +220,13 @@
             <img src="pictures/CM_engagement - 42 of 42.jpeg" class="vertical">
             <img src="pictures/CM_engagement - 6 of 42.jpeg" class="horizontal">
             <img src="pictures/CM_engagement - 7 of 42.jpeg" class="horizontal">
-            <img src="pictures/CM_engagement - 32 of 42.jpeg" class="vertical">
+            <img src="pictures/CM_engagement - 12 of 42.jpeg" class="vertical">
             <img src="pictures/CM_engagement - 33 of 42.jpeg" class="vertical">
             <img src="pictures/CM_engagement - 8 of 42.jpeg" class="horizontal">
             <img src="pictures/CM_engagement - 9 of 42.jpeg" class="horizontal">
             <img src="pictures/CM_engagement - 10 of 42.jpeg" class="vertical">
             <img src="pictures/CM_engagement - 11 of 42.jpeg" class="vertical">
-            <img src="pictures/CM_engagement - 12 of 42.jpeg" class="vertical">
+            <img src="pictures/CM_engagement - 32 of 42.jpeg" class="vertical">
             <img src="pictures/CM_engagement - 13 of 42.jpeg" class="vertical">
             <img src="pictures/CM_engagement - 20 of 42.jpeg" class="horizontal">
             <img src="pictures/CM_engagement - 14 of 42.jpeg" class="vertical">
@@ -350,7 +352,22 @@
             </div>
         </div>
     </div>
-    
+
+    <div id="registry-section" class="content" style="display: none;">
+        <div class="registry-content">
+            <h2>Our Registry</h2>
+            <p class="registry-note">
+                Your attendance is as good a gift as any, but for those who would like, we have thoughtfully put together our registry with items to help us start this next chapter in our lives.
+            </p>
+            <p class="registry-note">
+                We have so much to look forward to and have included cash gift options if you would like to contribute to our future plans. Thank you from the bottom of our hearts.
+            </p>
+            <div class="registry-buttons">
+                <a href="https://www.amazon.com/wedding/registry/2LHNXSTC1FNJL" class="btn">Amazon Registry</a>
+                <a href="cash-gift-link" class="btn">Contributions</a>
+            </div>
+        </div>
+    </div>
       
     <!-- Footer Section -->
     <footer id="footer" class="footer">
