@@ -643,39 +643,71 @@ form button:hover {
 /*                           */
 /*                           */
 
-#party-member {
+
+.party-member {
   margin-top: 30px;
 }
 
 .party-member h3 {
-  font-size: 1.5rem; /* Adjust font size for the group titles (Groomsmen/Bridesmaids) */
+  font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.party-member h3::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: #c7a17a; /* Subtle gold accent */
+  margin: 10px auto 0;
+  border-radius: 2px;
 }
 
 .party-list {
-  list-style-type: none; /* Removes the bullet points */
-  padding: 0; /* Removes any default padding */
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
 }
 
 .party-list p {
   font-family: 'Quicksand', sans-serif;
-  font-size: 1rem; /* Adjust this if you want the text smaller or larger */
-  text-align: center;
+  font-size: 1rem;
   color: #333;
-  margin: 5px 0; /* Adds space between each name */
+  margin: 0;
+  text-align: center;
+  padding: 10px 15px;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-width: 120px;
+}
+
+.party-list p:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
 }
 
 @media (max-width: 600px) {
   .party-member h3 {
-    font-size: 1.3rem; /* Smaller font size for group titles on mobile */
+    font-size: 1.3rem;
+  }
+  .party-list {
+    gap: 10px;
   }
   .party-list p {
-    font-size: 0.9rem; /* Smaller font size for names on mobile */
+    font-size: 0.9rem;
+    min-width: 100px;
+    padding: 8px 12px;
   }
 }
-
 
 /*                          */
 /* END OF WEDDING PARTY TAB */
