@@ -652,34 +652,38 @@ form button:hover {
 }
 
 .party-side {
-  width: 50%;
+  flex: 1;
+  height: 100%;
   padding: 60px 40px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   z-index: 2;
   position: relative;
+  box-sizing: border-box;
 }
 
 .groomsmen-side {
   background-color: black;
   color: white;
-  clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
+  clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
   text-align: center;
 }
 
 .bridesmaids-side {
   background-color: white;
   color: black;
-  clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+  clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
   text-align: center;
-  margin-left: -10%
+  margin-left: -15%
 }
 
 #wedding-party h3 {
   font-family: 'Herr Von Muellerhoff', cursive;
   font-size: 3rem;
   margin-bottom: 20px;
+  white-space: nowrap;
 }
 
 .party-list p {
