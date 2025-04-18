@@ -644,69 +644,59 @@ form button:hover {
 /*                           */
 
 
-.party-member {
-  margin-top: 30px;
-}
-
-.party-member h3 {
-  font-size: 1.5rem;
-  font-family: 'Herr Von Muellerhoff', cursive;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 20px;
-  position: relative;
-}
-
-.party-member h3::after {
-  content: "";
-  display: block;
-  width: 60px;
-  height: 3px;
-  background-color: #c7a17a; /* Subtle gold accent */
-  margin: 10px auto 0;
-  border-radius: 2px;
-}
-
-.party-list {
-  list-style-type: none;
-  padding: 0;
+#wedding-party.wedding-party-split {
   display: flex;
-  flex-wrap: wrap;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.party-side {
+  width: 50%;
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
+  z-index: 2;
+}
+
+.groomsmen-side {
+  background-color: #0f1b2b;
+  color: white;
+  clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
+  text-align: right;
+}
+
+.bridesmaids-side {
+  background-color: white;
+  color: #0f1b2b;
+  clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+  text-align: left;
+}
+
+#wedding-party h3 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
 }
 
 .party-list p {
-  font-family: 'Quicksand', 'sans-serif';
-  font-size: 2rem;
-  color: #333;
-  margin: 0;
-  text-align: center;
-  padding: 10px 15px;
-  border-radius: 12px;
-  background-color: #f9f9f9;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  min-width: 120px;
+  margin: 10px 0;
+  font-size: 1.2rem;
 }
 
-.party-list p:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
-}
+/* Responsive fallback */
+@media (max-width: 768px) {
+  #wedding-party.wedding-party-split {
+    flex-direction: column;
+    height: auto;
+  }
 
-@media (max-width: 600px) {
-  .party-member h3 {
-    font-size: 1.3rem;
-  }
-  .party-list {
-    gap: 10px;
-  }
-  .party-list p {
-    font-size: 0.9rem;
-    min-width: 100px;
-    padding: 8px 12px;
+  .groomsmen-side,
+  .bridesmaids-side {
+    clip-path: none;
+    width: 100%;
+    text-align: center;
   }
 }
 
@@ -771,8 +761,8 @@ form button:hover {
 #qa-section {
   padding-top: 50px;  /* More space from navbar */
   padding-bottom: 40px; /* More space before footer */
-  padding-left: 150px;
-  padding-right: 150px;
+  padding-left: 250px;
+  padding-right: 250px;
 }
 
 #qa-section, .content, .qa-item {
@@ -961,8 +951,8 @@ hr {
 .schedule-section {
   text-align: center;
   padding: 80px 20px;
-  margin-top: 100px;
-  margin-bottom: 100px;
+  margin-top: 70px;
+  margin-bottom: 80px;
   position: relative;
 }
 
