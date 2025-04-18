@@ -648,7 +648,6 @@ form button:hover {
   display: flex;
   flex-wrap: nowrap;
   align-items: stretch;
-  height: 100vh;
   padding: 80px 0;
   overflow: hidden;
 }
@@ -1016,14 +1015,16 @@ hr {
   z-index: 2;
 }
 
-.event.left {
+/* Position LEFT items on the left side */
+.timeline-item.left .event {
   text-align: right;
-  align-self: flex-start;
+  order: 1;
 }
 
-.event.right {
+/* Position RIGHT items on the right side */
+.timeline-item.right .event {
   text-align: left;
-  align-self: flex-start;
+  order: 3;
 }
 
 .event h3 {
