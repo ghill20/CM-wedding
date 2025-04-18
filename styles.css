@@ -644,7 +644,7 @@ form button:hover {
 /*                           */
 
 
-#wedding-party.wedding-party-split {
+#wedding-party.content {
   display: flex;
   height: 100vh;
   position: relative;
@@ -655,28 +655,30 @@ form button:hover {
   width: 50%;
   padding: 60px 40px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   z-index: 2;
+  position: relative;
 }
 
 .groomsmen-side {
-  background-color: #0f1b2b;
+  background-color: black;
   color: white;
   clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
-  text-align: right;
+  text-align: center;
 }
 
 .bridesmaids-side {
   background-color: white;
-  color: #0f1b2b;
+  color: black;
   clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
-  text-align: left;
+  text-align: center;
+  margin-left: -10%
 }
 
 #wedding-party h3 {
-  font-family: 'Great Vibes', cursive;
-  font-size: 2.5rem;
+  font-family: 'Herr Von Muellerhoff', cursive;
+  font-size: 3rem;
   margin-bottom: 20px;
 }
 
