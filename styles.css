@@ -644,70 +644,19 @@ form button:hover {
 /*                           */
 
 
-.party-member {
-  margin-top: 30px;
+.wedding-party-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: #c7a17a;
 }
-
-.party-member h3 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 20px;
+.wedding-party-container {
   position: relative;
 }
 
-.party-member h3::after {
-  content: "";
-  display: block;
-  width: 60px;
-  height: 3px;
-  background-color: #c7a17a; /* Subtle gold accent */
-  margin: 10px auto 0;
-  border-radius: 2px;
-}
-
-.party-list {
-  list-style-type: none;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.party-list p {
-  font-family: 'Quicksand', sans-serif;
-  font-size: 1rem;
-  color: #333;
-  margin: 0;
-  text-align: center;
-  padding: 10px 15px;
-  border-radius: 12px;
-  background-color: #f9f9f9;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  min-width: 120px;
-}
-
-.party-list p:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
-}
-
-@media (max-width: 600px) {
-  .party-member h3 {
-    font-size: 1.3rem;
-  }
-  .party-list {
-    gap: 10px;
-  }
-  .party-list p {
-    font-size: 0.9rem;
-    min-width: 100px;
-    padding: 8px 12px;
-  }
-}
 
 /*                          */
 /* END OF WEDDING PARTY TAB */
