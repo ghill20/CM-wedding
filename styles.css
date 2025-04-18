@@ -644,19 +644,70 @@ form button:hover {
 /*                           */
 
 
-.wedding-party-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 1px;
-  background: #c7a17a;
+.party-member {
+  margin-top: 30px;
 }
-.wedding-party-container {
+
+.party-member h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
   position: relative;
 }
 
+.party-member h3::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: #c7a17a; /* Subtle gold accent */
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+.party-list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.party-list p {
+  font-family: 'Herr Von Muellerhoff', cursive;
+  font-size: 2rem;
+  color: #333;
+  margin: 0;
+  text-align: center;
+  padding: 10px 15px;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-width: 120px;
+}
+
+.party-list p:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 600px) {
+  .party-member h3 {
+    font-size: 1.3rem;
+  }
+  .party-list {
+    gap: 10px;
+  }
+  .party-list p {
+    font-size: 0.9rem;
+    min-width: 100px;
+    padding: 8px 12px;
+  }
+}
 
 /*                          */
 /* END OF WEDDING PARTY TAB */
@@ -717,10 +768,10 @@ form button:hover {
 /*                           */
 
 #qa-section {
-  padding-top: 40px;  /* More space from navbar */
+  padding-top: 50px;  /* More space from navbar */
   padding-bottom: 40px; /* More space before footer */
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-left: 150px;
+  padding-right: 150px;
 }
 
 #qa-section, .content, .qa-item {
@@ -906,220 +957,109 @@ hr {
 
 
 
-/*                           */
-/*                           */
-/*   BEGIN SLIDER SECTION    */
-/*                           */
-/*                           */
-
-
-.schedule-container {
+.schedule-section {
   text-align: center;
-  padding: 50px 20px;
+  padding: 80px 20px;
+  position: relative;
 }
 
 .schedule-title {
-  font-family: 'Quicksand', sans-serif;
-  font-size: 2.5rem;
-  margin-bottom: 20px;
+  font-family: 'Herr Von Muellerhoff', cursive;
+  font-size: 3rem;
+  margin-bottom: 60px;
 }
 
-.swiper-container {
-  display: flex;
-  flex-direction: column;
+.timeline {
   position: relative;
-  width: 100%;
-  max-width: 800px;
-  height: 500px;
-  margin: auto;
-  border: 2px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  width: 90%;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.swiper-slide {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-
-.schedule-card {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  height: 100%;
-  background: white;
-  padding: 20px;
-  box-sizing: border-box;
-  gap: 20px;
-}
-
-.schedule-card img {
-  width: 40%;
-  height: auto;
-  max-height: 360px;
-  object-fit: cover;
-  border-radius: 8px;
-  align-self: flex-start;
-}
-
-.event-details {
-  width: 55%;
-  text-align: left;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.event-details h3 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  font-family: 'Quicksand', sans-serif;
-}
-
-.event-details p {
-  font-size: 1rem;
-  color: #555;
-  margin: 4px 0;
-}
-
-/* Custom Pagination Wrapper */
-.swiper-pagination {
+.timeline::before {
+  content: "";
   position: absolute;
+  top: 0;
   bottom: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 40px;
-  padding-bottom: 8px;
-  box-sizing: border-box;
-  z-index: 10;
+  left: 50%;
+  width: 2px;
+  background: #0f1b2b;
+  transform: translateX(-50%);
+  z-index: 1;
 }
 
-.custom-bullet-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.event {
+  width: 45%;
+  position: relative;
+  margin-bottom: 80px;
+  z-index: 2;
 }
 
-.swiper-pagination-bullet {
-  width: 16px;
-  height: 16px;
-  background: black;
-  opacity: 0.5;
-  margin: 0;
-  border-radius: 50%;
-  transition: opacity 0.3s ease;
+.event h3 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.8rem;
+  margin-bottom: 0.2rem;
+}
+
+.event .time {
+  font-weight: bold;
   display: block;
+  margin-bottom: 0.6rem;
 }
 
-.swiper-pagination-bullet-active {
-  opacity: 1;
-  background: black;
-  transform: scale(1.2);
+.event p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #0f1b2b;
 }
 
-.custom-label {
-  font-size: 0.9rem;
-  color: black;
-  margin-top: 6px;
-  font-family: 'Quicksand', sans-serif;
+.event.left {
+  text-align: right;
+  float: left;
+  clear: both;
 }
 
-.swiper-wrapper {
-  flex: 1;
+.event.right {
+  text-align: left;
+  float: right;
+  clear: both;
 }
 
+.circle {
+  position: absolute;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border: 2px solid #0f1b2b;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+/* Position each circle using nth-of-type to match events */
+.circle:nth-of-type(2) {
+  top: 130px;
+}
+
+.circle:nth-of-type(4) {
+  top: 380px;
+}
+
+/* Add responsiveness */
 @media (max-width: 768px) {
-  .schedule-container {
-    padding: 40px 15px;
-  }
-
-  .schedule-title {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-  }
-
-  .swiper-container {
-    height: 600px; /* Let content size determine height */
-    max-height: none;
-    border: none;
-    box-shadow: none;
-  }
-
-  .swiper-wrapper {
-    height: 100%;
-  }
-
-  .swiper-slide {
-    height: 100%;
-  }
-
-  .schedule-card {
-    flex-direction: column;
-    padding: 20px;
-    gap: 20px;
-    height: 100%;
-    box-sizing: border-box;
-  }
-
-  .schedule-card img {
+  .event {
     width: 100%;
-    height: auto;
-    max-height: 280px;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-
-  .event-details {
-    width: 100%;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .event-details h3 {
-    font-size: 1.4rem;
-    margin-bottom: 10px;
-  }
-
-  .event-details p {
-    font-size: 1rem;
-    line-height: 1.5;
-    margin: 4px 0;
-  }
-
-  .swiper-pagination {
-    flex-direction: row; /* Ensure horizontal layout */
-    gap: 15px;
-    position: relative;
-    bottom: auto;
-    margin-top: 20px;
-  }
-
-  .custom-label {
-    font-size: 0.8rem;
-    margin-top: 4px;
+    float: none;
     text-align: center;
   }
 
-  .swiper-pagination-bullet {
-    width: 14px;
-    height: 14px;
+  .event.left,
+  .event.right {
+    text-align: center;
   }
 }
 
-
-/*                          */
-/*        END SLIDER        */
-/*                          */
 
 
 
@@ -1142,7 +1082,7 @@ hr {
 
 .registry-content h2 {
   font-family: 'Herr Von Muellerhoff', cursive;
-  font-size: 4rem;
+  font-size: 3.5rem;
   color: #333;
   margin-bottom: 20px;
 }

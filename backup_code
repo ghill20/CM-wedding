@@ -46,3 +46,220 @@
 
             </div>
         </div>
+
+
+
+        /*                           */
+        /*                           */
+        /*   BEGIN SLIDER SECTION    */
+        /*                           */
+        /*                           */
+        
+        
+        .schedule-container {
+          text-align: center;
+          padding: 50px 20px;
+        }
+        
+        .schedule-title {
+          font-family: 'Quicksand', sans-serif;
+          font-size: 2.5rem;
+          margin-bottom: 20px;
+        }
+        
+        .swiper-container {
+          display: flex;
+          flex-direction: column;
+          position: relative;
+          width: 100%;
+          max-width: 800px;
+          height: 500px;
+          margin: auto;
+          border: 2px solid #ddd;
+          border-radius: 10px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+        }
+        
+        .swiper-slide {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100%;
+        }
+        
+        .schedule-card {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          height: 100%;
+          background: white;
+          padding: 20px;
+          box-sizing: border-box;
+          gap: 20px;
+        }
+        
+        .schedule-card img {
+          width: 40%;
+          height: auto;
+          max-height: 360px;
+          object-fit: cover;
+          border-radius: 8px;
+          align-self: flex-start;
+        }
+        
+        .event-details {
+          width: 55%;
+          text-align: left;
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+        
+        .event-details h3 {
+          font-size: 2rem;
+          margin-bottom: 20px;
+          font-family: 'Quicksand', sans-serif;
+        }
+        
+        .event-details p {
+          font-size: 1rem;
+          color: #555;
+          margin: 4px 0;
+        }
+        
+        /* Custom Pagination Wrapper */
+        .swiper-pagination {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: flex-end;
+          gap: 40px;
+          padding-bottom: 8px;
+          box-sizing: border-box;
+          z-index: 10;
+        }
+        
+        .custom-bullet-wrapper {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        
+        .swiper-pagination-bullet {
+          width: 16px;
+          height: 16px;
+          background: black;
+          opacity: 0.5;
+          margin: 0;
+          border-radius: 50%;
+          transition: opacity 0.3s ease;
+          display: block;
+        }
+        
+        .swiper-pagination-bullet-active {
+          opacity: 1;
+          background: black;
+          transform: scale(1.2);
+        }
+        
+        .custom-label {
+          font-size: 0.9rem;
+          color: black;
+          margin-top: 6px;
+          font-family: 'Quicksand', sans-serif;
+        }
+        
+        .swiper-wrapper {
+          flex: 1;
+        }
+        
+        @media (max-width: 768px) {
+          .schedule-container {
+            padding: 40px 15px;
+          }
+        
+          .schedule-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+          }
+        
+          .swiper-container {
+            height: 600px; /* Let content size determine height */
+            max-height: none;
+            border: none;
+            box-shadow: none;
+          }
+        
+          .swiper-wrapper {
+            height: 100%;
+          }
+        
+          .swiper-slide {
+            height: 100%;
+          }
+        
+          .schedule-card {
+            flex-direction: column;
+            padding: 20px;
+            gap: 20px;
+            height: 100%;
+            box-sizing: border-box;
+          }
+        
+          .schedule-card img {
+            width: 100%;
+            height: auto;
+            max-height: 280px;
+            object-fit: cover;
+            border-radius: 8px;
+          }
+        
+          .event-details {
+            width: 100%;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+          }
+        
+          .event-details h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+          }
+        
+          .event-details p {
+            font-size: 1rem;
+            line-height: 1.5;
+            margin: 4px 0;
+          }
+        
+          .swiper-pagination {
+            flex-direction: row; /* Ensure horizontal layout */
+            gap: 15px;
+            position: relative;
+            bottom: auto;
+            margin-top: 20px;
+          }
+        
+          .custom-label {
+            font-size: 0.8rem;
+            margin-top: 4px;
+            text-align: center;
+          }
+        
+          .swiper-pagination-bullet {
+            width: 14px;
+            height: 14px;
+          }
+        }
+        
+        
+        /*                          */
+        /*        END SLIDER        */
+        /*                          */
