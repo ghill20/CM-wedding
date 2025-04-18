@@ -646,14 +646,15 @@ form button:hover {
 
 #wedding-party.content {
   display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
   height: 100vh;
-  position: relative;
+  padding: 80px 0;
   overflow: hidden;
 }
 
 .party-side {
   flex: 1;
-  height: 100%;
   padding: 60px 40px;
   display: flex;
   flex-direction: column;
