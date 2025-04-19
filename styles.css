@@ -653,14 +653,12 @@ form button:hover {
 }
 
 .party-side {
-  flex: 1;
+  width: 50%;
   padding: 60px 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 2;
-  position: relative;
   box-sizing: border-box;
 }
 
@@ -668,15 +666,14 @@ form button:hover {
   background-color: black;
   color: white;
   clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
-  text-align: center;
+  text-align: left;
 }
 
 .bridesmaids-side {
   background-color: white;
   color: black;
   clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
-  text-align: center;
-  margin-left: -15%
+  text-align: right;
 }
 
 #wedding-party h3 {
@@ -865,11 +862,14 @@ hr {
 /*                          */
 
 
+
+
 /*                           */
 /*                           */
 /*   BEGIN FOOTER SECTION    */
 /*                           */
 /*                           */
+
 
 
 /* Footer Section */
@@ -952,14 +952,18 @@ hr {
 }
 
 
+/*                           */
+/*                           */
+/*   BEGIN SCHEDULE SECTION  */
+/*                           */
+/*                           */
 
 
 .schedule-section {
   text-align: center;
   padding: 80px 20px;
-  margin-top: 70px;
-  margin-bottom: 80px;
   position: relative;
+  margin-bottom: 100px;
 }
 
 .schedule-title {
@@ -989,42 +993,63 @@ hr {
   z-index: 1;
 }
 
+.timeline::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 2px;
+  background-color: #0f1b2b;
+  z-index: 1;
+}
+
 .timeline-item {
   position: relative;
-  margin: 100px 0; /* ← spacing between circles */
-  display: flex;
-  align-items: flex-start;
   justify-content: space-between;
+  margin: 100px 0;
+  display: flex;
+  align-items: center; /* centers event & circle vertically */
 }
 
-.circle {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 12px;
-  height: 12px;
-  background: #fff;
-  border: 2px solid #0f1b2b;
-  border-radius: 50%;
-  z-index: 2;
-  top: 0;
+/* LEFT side */
+.timeline-item.left {
+  flex-direction: row;
 }
 
+/* RIGHT side */
+.timeline-item.right {
+  flex-direction: row-reverse;
+}
+
+/* The content box */
 .event {
   width: 45%;
   z-index: 2;
 }
 
-/* Position LEFT items on the left side */
+/* LEFT text alignment */
 .timeline-item.left .event {
   text-align: right;
-  order: 1;
 }
 
-/* Position RIGHT items on the right side */
+/* RIGHT text alignment */
 .timeline-item.right .event {
   text-align: left;
-  order: 3;
+}
+
+/* Dot in center */
+.circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border: 2px solid #0f1b2b;
+  border-radius: 50%;
+  z-index: 3;
 }
 
 .event h3 {
@@ -1045,7 +1070,20 @@ hr {
   line-height: 1.5;
 }
 
-/* Responsive tweak */
+.timeline-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+/* Mobile-friendly */
 @media (max-width: 768px) {
   .timeline-item {
     flex-direction: column;
@@ -1058,14 +1096,16 @@ hr {
     margin-top: 20px;
   }
 
-  .event.left, .event.right {
+  .timeline-item.left .event,
+  .timeline-item.right .event {
     text-align: center;
   }
 }
 
 
-
-
+/*                          */
+/*       END SCHEDULE       */
+/*                          */
 
 
 #registry-section {

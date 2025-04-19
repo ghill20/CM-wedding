@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const numGuestsDropdown = document.getElementById("guest-count");
     const rsvpDropdown = document.getElementById("rsvp-dropdown"); // Yes/No RSVP dropdown
     const autocompleteList = document.getElementById("autocomplete-list");
+    const items = document.querySelectorAll('.timeline-item');
 
 
     // Load guest list
@@ -226,27 +227,19 @@ document.addEventListener('DOMContentLoaded', function () {
     //     rsvpForm.style.display = 'none'; // Hide the form after submission
     // });
 
-    const swiper = new Swiper('.swiper-container', {
-        slidesPerView: 1,
-        loop: true, // Set to true if you want autoplay to loop
-      
-        autoplay: {
-          delay: 7000,             // 3 seconds between slides
-          disableOnInteraction: false, // Keeps autoplay going even after user clicks
-        },
-      
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-          renderBullet: function (index, className) {
-            const labels = ['Schedule', 'Menu', 'Rece'];
-            return `
-              <div class="custom-bullet-wrapper">
-                <span class="${className}"></span>
-                <p class="custom-label">${labels[index]}</p>
-              </div>`;
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target); // animate only once
           }
-        }
+        });
+      }, {
+        threshold: 0.1
+      });
+    
+      items.forEach(item => {
+        observer.observe(item);
       });
       
       
