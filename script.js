@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const rsvpDropdown = document.getElementById("rsvp-dropdown"); // Yes/No RSVP dropdown
     const autocompleteList = document.getElementById("autocomplete-list");
     const items = document.querySelectorAll('.timeline-item');
+    const timeline = document.querySelector('.timeline');
 
 
     // Load guest list
@@ -241,6 +242,22 @@ document.addEventListener('DOMContentLoaded', function () {
       items.forEach(item => {
         observer.observe(item);
       });
+
+    const timelineObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+        timeline.classList.add('visible');
+        timelineObserver.unobserve(entry.target);
+        }
+    });
+    }, {
+    threshold: 0.1
+    });
+
+    if (timeline) {
+        timelineObserver.observe(timeline);
+    }
+
       
       
 });
