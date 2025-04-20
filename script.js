@@ -85,6 +85,15 @@ document.addEventListener('DOMContentLoaded', function () {
                     iframe.src = iframe.src;  // Reload the iframe
                 }
             }
+
+            if (targetSection) {
+                if (target === "wedding-party") {
+                    targetSection.style.display = "flex"; // Flex for side-by-side layout
+                } else {
+                    targetSection.style.display = "block"; // Block for everything else
+                }
+            }
+
         });
     });    
 

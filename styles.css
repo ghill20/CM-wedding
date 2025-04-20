@@ -654,40 +654,46 @@ form button:hover {
 
 #wedding-party.content {
   display: flex;
-  flex-wrap: nowrap;
-  align-items: stretch;
-  padding: 80px 0;
-  overflow: hidden;
+  padding: 0;
+  gap: 0; 
+  overflow: visible;
+  width: 120%; /* Enough to hold 2x 65% blocks */
+  max-width: none;
+  margin-left: -15%;
 }
 
+
 .party-side {
-  width: 50%;
   padding: 60px 40px;
+  flex: 0 0 50%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
 }
 
 .groomsmen-side {
+  margin-left: 5%;
   background-color: black;
   color: white;
   clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
   text-align: left;
+  z-index: 2;
 }
 
 .bridesmaids-side {
+  margin-left: -8%;
   background-color: white;
   color: black;
   clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
   text-align: right;
+  z-index: 1;
 }
 
 #wedding-party h3 {
   font-family: 'Herr Von Muellerhoff', cursive;
   font-size: 3rem;
-  margin-bottom: 20px;
   white-space: nowrap;
 }
 
@@ -698,18 +704,21 @@ form button:hover {
 
 /* Responsive fallback */
 @media (max-width: 768px) {
-  #wedding-party.wedding-party-split {
+  #wedding-party.content {
     flex-direction: column;
-    height: auto;
+    width: 100%;
+    margin-left: 0;
   }
 
   .groomsmen-side,
   .bridesmaids-side {
     clip-path: none;
     width: 100%;
+    margin-left: 0;
     text-align: center;
   }
 }
+
 
 /*                          */
 /* END OF WEDDING PARTY TAB */
@@ -978,7 +987,7 @@ hr {
   font-size: 4rem;
   color: black;
   margin-bottom: 60px;
-  padding-right: 120px;
+  padding-right: 170px;
   padding-top: 20px;
   text-align: right;
 }
@@ -1045,11 +1054,13 @@ hr {
 /* LEFT text alignment */
 .timeline-item.left .event {
   text-align: right;
+  padding-left: 90px;
 }
 
 /* RIGHT text alignment */
 .timeline-item.right .event {
   text-align: left;
+  padding-right: 80px;
 }
 
 /* Dot in center */
@@ -1077,7 +1088,7 @@ hr {
 .event .time {
   display: block;
   font-weight: bold;
-  margin: 8px 0;
+  margin: 8px 0 15px 0;
 }
 
 .event p {
@@ -1180,6 +1191,8 @@ hr {
   .timeline-item.left .event,
   .timeline-item.right .event {
     text-align: left;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
