@@ -215,9 +215,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Optionally, scroll to the message
                 document.getElementById("success-message").scrollIntoView({ behavior: 'smooth' });
             })
-            
+
             .catch(error => {
                 console.error('Submission error', error);
+                // Soft success: hide the form and show a message
+                rsvpForm.style.display = 'none';
+                document.getElementById("success-message").style.display = 'block';
+                // Optionally, scroll to the message
+                document.getElementById("success-message").scrollIntoView({ behavior: 'smooth' });
             });
         });
     }
