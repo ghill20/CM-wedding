@@ -196,37 +196,31 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // // RSVP Form Submission (Lock RSVP)
-    // const rsvpFormElement = document.getElementById("rsvp-form");
+    if (rsvpForm) {
+        rsvpForm.addEventListener("submit", e => {
+            e.preventDefault();
+        
+            const data = new FormData(rsvpForm);
+            const action = rsvpForm.action;
+        
+            fetch(action, {
+                method: 'POST',
+                body: data,
+            })
 
-    // rsvpFormElement.addEventListener("submit", function (event) {
-    //     event.preventDefault(); // Prevent default form submission
-        
-    //     const guestName = guestNameInput.value.trim();
-    //     console.log("Guest Name (on submit):", guestName);  // Log the guest name on submit
-    
-    //     // Ensure the guest list is available
-    //     if (!guestList || guestList.length === 0) {
-    //         alert("The guest list is not available at the moment. Please try again later.");
-    //         return;
-    //     }
-    
-    //     // Check if the entered guest name exists in the guest list
-    //     const matchedGuest = guestList.find(guest => guest["guest-name"] && guest["guest-name"].toLowerCase() === guestName.toLowerCase());
-        
-    //     if (!matchedGuest) {
-    //         alert("Sorry, your name is not on the guest list.");
-    //         return;
-    //     }
-    
-    //     // Store the RSVP in local storage (to prevent further submissions)
-    //     localStorage.setItem("userRSVP", "true"); // Store RSVP status
-        
-    //     // If valid, submit the form (this will send data to Google Sheets)
-    //     this.submit();  // Manually submit the form after validation
-        
-    //     rsvpForm.style.display = 'none'; // Hide the form after submission
-    // });
+            .then(() => {
+                // Soft success: hide the form and show a message
+                rsvpForm.style.display = 'none';
+                document.getElementById("success-message").style.display = 'block';
+                // Optionally, scroll to the message
+                document.getElementById("success-message").scrollIntoView({ behavior: 'smooth' });
+            })
+            
+            .catch(error => {
+                console.error('Submission error', error);
+            });
+        });
+    }
 
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {

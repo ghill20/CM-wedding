@@ -105,6 +105,11 @@
                 <input name="restrictions" id="restrictions" placeholder="N/A">
         
                 <button type="submit">Submit</button>
+
+                <div id="success-message" style="display: none; text-align: center; margin-top: 1em;">
+                    <p>Thank you for your RSVP!</p>
+                </div>
+                  
             </form>
         </div>
 
@@ -135,6 +140,9 @@
 
 
         <div class="timeline">
+
+            <h2 class="schedule-title">Schedule</h2>
+
             <div class="timeline-item left">
               <div class="circle"></div>
               <div class="event">
@@ -163,34 +171,36 @@
             </div>
         </div>
           
-        <div class="map-section">
-            <p>Click below for directions to <strong>The Milestone Barn:</strong></p>
+        <div id="map-section">
 
+            <h2 class="map-title">Directions</h2>
+
+            <p style="margin-bottom: 15px;">Click below for directions to <strong>The Milestone Barn:</strong></p>
+          
             <!-- Google Maps Button -->
             <a href="https://www.google.com/maps/dir/?api=1&destination=The+Milestone+Barn,+3801+Mohr+Rd,+Bannister,+MI+48807" 
-            target="_blank">
-                <button class="map-button" id="google-maps-btn">Open in Google Maps</button>
+               target="_blank">
+              <button class="map-button">Open in Google Maps</button>
             </a>
-
+          
             <!-- Apple Maps Button -->
             <a href="https://maps.apple.com/?q=The+Milestone+Barn,+3801+Mohr+Rd,+Bannister,+MI+48807" 
-            target="_blank">
-                <button class="map-button" id="apple-maps-btn">Open in Apple Maps</button>
+               target="_blank">
+              <button class="map-button">Open in Apple Maps</button>
             </a>
-
-            <div id="map-container">
-                <!-- Google Maps Embed -->
-                <iframe 
-                    id="google-map" 
-                    style="border:0;" 
-                    allowfullscreen="" 
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
-                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDrar-4FfHFgFGSTE34BzCFdATCf9Luqug&q=The+Milestone+Barn">
-                </iframe>
+          
+            <div class="map-wrapper">
+              <iframe 
+                id="google-map" 
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDrar-4FfHFgFGSTE34BzCFdATCf9Luqug&q=The+Milestone+Barn"
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
             </div>
         </div>
     </div>
+          
     
     <!-- Photos Section -->
     <div id="photos" class="content" style="display: none;">
