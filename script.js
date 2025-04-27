@@ -238,34 +238,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target); // animate only once
-          }
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target); // animate only once
+            }
         });
-      }, {
-        threshold: 0.1
-      });
+      }, {threshold: 0.1});
     
       items.forEach(item => {
         observer.observe(item);
       });
 
     const timelineObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-        timeline.classList.add('visible');
-        timelineObserver.unobserve(entry.target);
-        }
-    });
-    }, {
-    threshold: 0.1
-    });
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                timeline.classList.add('visible');
+                timelineObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1});
 
     if (timeline) {
         timelineObserver.observe(timeline);
     }
-
-      
       
 });
