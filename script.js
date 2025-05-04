@@ -208,6 +208,13 @@ document.addEventListener('DOMContentLoaded', function () {
     if (rsvpForm) {
         rsvpForm.addEventListener("submit", e => {
             e.preventDefault();
+
+            const submitBtn = rsvpForm.querySelector("button[type='submit']");
+            const originalText = submitBtn.textContent;
+        
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Submitting...";
+            submitBtn.classList.add("disabled");
         
             const data = new FormData(rsvpForm);
             const action = rsvpForm.action;
