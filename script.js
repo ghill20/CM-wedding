@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const autocompleteList = document.getElementById("autocomplete-list");
     const items = document.querySelectorAll('.timeline-item');
     const timeline = document.querySelector('.timeline');
+    const submitButton = document.getElementById("submit-button");
+    const buttonSpinner = submitButton.querySelector(".button-spinner");
+    const buttonText = submitButton.querySelector(".button-text");
 
 
     // Load guest list
@@ -209,12 +212,9 @@ document.addEventListener('DOMContentLoaded', function () {
         rsvpForm.addEventListener("submit", e => {
             e.preventDefault();
 
-            const submitBtn = rsvpForm.querySelector("button[type='submit']");
-            const originalText = submitBtn.textContent;
-        
-            submitBtn.disabled = true;
-            submitBtn.textContent = "Submitting...";
-            submitBtn.classList.add("disabled");
+            submitButton.disabled = true;
+            buttonText.style.display = "none";
+            buttonSpinner.style.display = "inline-block";
         
             const data = new FormData(rsvpForm);
             const action = rsvpForm.action;
